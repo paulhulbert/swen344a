@@ -2,6 +2,7 @@ import React, { PureComponent } from 'react'
 import HomePage from './components/home/HomePage';
 import CalendarPage from './components/calendar/CalendarPage';
 import StocksPage from './components/stocks/StocksPage';
+import withAuth from './utils/withAuth';
 import {
   BrowserRouter as Router,
   Route,
@@ -16,6 +17,7 @@ import 'semantic-ui-css/semantic.min.css';
 import './style/app.css';
 
 export default class App extends PureComponent {
+
   render() {
     return (
       <>
@@ -25,15 +27,15 @@ export default class App extends PureComponent {
             <Route
               exact={true}
               path={INDEX_PAGE_ROUTE}
-              component={HomePage}
+              component={withAuth(HomePage)}
             />
             <Route
               path={CALENDAR_PAGE_ROUTE}
-              component={CalendarPage}
+              component={withAuth(CalendarPage)}
             />
             <Route
               path={STOCKS_PAGE_ROUTE}
-              component={StocksPage}
+              component={withAuth(StocksPage)}
             />
           </div>
         </Router>

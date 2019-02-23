@@ -1,13 +1,43 @@
 import React, { PureComponent } from 'react'
-import HelloWorld from './components/HelloWorld';
+import HomePage from './components/home/HomePage';
+import CalendarPage from './components/calendar/CalendarPage';
+import StocksPage from './components/stocks/StocksPage';
+import {
+  BrowserRouter as Router,
+  Route,
+} from 'react-router-dom';
+import MenuBar from './components/menu/MenuBar';
+import { 
+  INDEX_PAGE_ROUTE,
+  CALENDAR_PAGE_ROUTE,
+  STOCKS_PAGE_ROUTE,
+} from './constants/routes';
 import 'semantic-ui-css/semantic.min.css';
-import { firebase, auth } from './utils/index';
+import './style/app.css';
 
 export default class App extends PureComponent {
   render() {
-    firebase.auth().signInWithRedirect(auth.twitterOAuth());
     return (
-      <HelloWorld />
+      <>
+        <Router>
+          <div className="active-page">
+            <MenuBar />
+            <Route
+              exact={true}
+              path={INDEX_PAGE_ROUTE}
+              component={HomePage}
+            />
+            <Route
+              path={CALENDAR_PAGE_ROUTE}
+              component={CalendarPage}
+            />
+            <Route
+              path={STOCKS_PAGE_ROUTE}
+              component={StocksPage}
+            />
+          </div>
+        </Router>
+      </>
     )
   }
 }

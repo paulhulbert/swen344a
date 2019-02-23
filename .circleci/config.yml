@@ -35,6 +35,7 @@ jobs:
       - run:
           name: Install Firebase Tools
           command: npm install --prefix=./firebase-deploy firebase-tools
+      - run: cd functions && npm install
       - run:
           name: Deploy to Firebase
           command: ./firebase-deploy/node_modules/.bin/firebase deploy --token=$FIREBASE_DEPLOY_TOKEN

@@ -1,7 +1,7 @@
 import React, { PureComponent } from 'react';
 import WeatherCard from './WeatherCard';
 import {
-  fetchFullFiveDayForecastForZip,
+  getFullForecastForZip,
 } from '../../../utils/weather/weatherUtils';
 import { List } from 'immutable';
 import moment from 'moment';
@@ -21,7 +21,7 @@ export default class WeatherSection extends PureComponent {
   }
 
   componentDidMount() {
-    fetchFullFiveDayForecastForZip(14623, this.handleUpdateWeather);
+    getFullForecastForZip(14623, this.handleUpdateWeather);
   }
 
   handleUpdateWeather(weather) {

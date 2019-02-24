@@ -1,11 +1,18 @@
 import { fromJS, Map, List } from 'immutable';
 import moment from 'moment';
 import { DATE_FORMAT } from '../../constants/formats';
+import firebase from 'firebase/app';
+import 'firebase/database';
+import { WEATHER_CACHE_LENGTH_MINS } from '../../constants/weatherConstants';
 
 // API Docs: https://openweathermap.org/api
 const WEATHER_API_KEY = '08e5475b6a4cf6a8daaec9f44e76575f';
 const BASE_URL = 'https://api.openweathermap.org/data/2.5'
 const DEFAULT_ZIP = 14623 //Henrietta, NY
+
+function getForecastPath(zip, date) {
+  return `forecast/${zip}/${date}`;
+}
 
 function capitalizeWord(word) {
   return word.charAt(0).toUpperCase() + word.substring(1);
@@ -67,11 +74,39 @@ function fetchFutureForecastForZip(zip = DEFAULT_ZIP, callback) {
     .then(callback);
 }
 
-export function fetchFullFiveDayForecastForZip(zip = DEFAULT_ZIP, callback) {
+function fetchFullFiveDayForecastForZip(todayDate, zip = DEFAULT_ZIP, callback) {
   fetchCurrentWeatherForZip(zip, (currentWeather) => {
-    const fiveDayForecast = List([currentWeather]);
+    let fullForecast = List([currentWeather]);
     fetchFutureForecastForZip(zip, (futureForecast) => {
-      callback(fiveDayForecast.concat(futureForecast));
+      fullForecast = fullForecast.concat(futureForecast);
+      // cache forecast for future use
+      writeForecast(todayDate, zip, fullForecast)
+      callback(fullForecast);
     })
+  });
+}
+
+export function getFullForecastForZip(zip = DEFAULT_ZIP, callback) {
+  const todayDate = moment().format(DATE_FORMAT);
+  fetchCachedForecast(todayDate, zip, callback);
+}
+
+function fetchCachedForecast(todayDate, zip, callback) {
+  return firebase.database().ref(getForecastPath(zip, todayDate)).once('value').then((response) => {
+    const dayForecast = fromJS(response.val());
+    if (!dayForecast || moment() > dayForecast.get('expireMillis')) {
+      return fetchFullFiveDayForecastForZip(todayDate, zip, callback);
+    }
+    callback(dayForecast.get('forecast'));
+  });
+}
+
+function writeForecast(date, zip, fullForecast) {
+  const fetchMoment = moment();
+  const expireMoment = fetchMoment.add(WEATHER_CACHE_LENGTH_MINS, 'minutes');
+  firebase.database().ref(getForecastPath(zip, date)).set({
+    forecast: fullForecast.toJS(),
+    fetchMillis: fetchMoment.valueOf(),
+    expireMillis: expireMoment.valueOf(), 
   });
 }

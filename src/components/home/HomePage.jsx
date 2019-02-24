@@ -7,7 +7,10 @@ import { Grid, Container } from 'semantic-ui-react';
 export default function HomePage() {
   return (
     <Container>
-      <Grid columns={3}>
+      <Grid
+        columns={3}
+        stretched={true}
+      >
         <Grid.Column>
           <HomePageSegment
             title="Twitter"

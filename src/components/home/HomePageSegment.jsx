@@ -7,7 +7,9 @@ export function HomePageSegment({
   children,
 }) {
   return (
-    <Segment.Group className="home-segment">
+    <Segment.Group
+      className="home-segment"
+    >
       <Segment
         inverted={true}
         color={PRIMARY_COLOR}

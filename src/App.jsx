@@ -12,7 +12,6 @@ import {
   CALENDAR_PAGE_ROUTE,
   STOCKS_PAGE_ROUTE,
 } from './constants/routes';
-import 'semantic-ui-css/semantic.min.css';
 import './style/app.css';
 
 export default class App extends PureComponent {

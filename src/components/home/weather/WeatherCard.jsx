@@ -1,6 +1,7 @@
 import React from 'react';
-
 import { Card, List, Header, Icon } from 'semantic-ui-react'
+import PropTypes from 'prop-types';
+import ImmutablePropTypes from 'react-immutable-proptypes';
 
 function getWeatherIconName(weatherMainDescription) {
   switch (weatherMainDescription) {
@@ -120,4 +121,10 @@ export default function WeatherCard({
       </Card.Content>
     </Card>
   );
+}
+
+WeatherCard.propTypes = {
+  weather: ImmutablePropTypes.map.isRequired,
+  dayLabel: PropTypes.string.isRequired,
+  isToday: PropTypes.bool,
 }

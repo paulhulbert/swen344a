@@ -7,6 +7,10 @@ const WEATHER_API_KEY = '08e5475b6a4cf6a8daaec9f44e76575f';
 const BASE_URL = 'https://api.openweathermap.org/data/2.5'
 const DEFAULT_ZIP = 14623 //Henrietta, NY
 
+function capitalizeWord(word) {
+  return word.charAt(0).toUpperCase() + word.substring(1);
+}
+
 function forecastToMap(forecast, ignoreCurrentTemp, city, date) {
   const dailyTemperatures = forecast.get('main');
   return fromJS({
@@ -15,10 +19,14 @@ function forecastToMap(forecast, ignoreCurrentTemp, city, date) {
     lowTemp: Math.round(dailyTemperatures.get('temp_min')),
     location: city ? city : forecast.get('name'),
     date: date ? date : moment().format(DATE_FORMAT),
+    weatherDescription: {
+      mainDescription: forecast.get('weather').first().get('main'),
+      detailedDescription: capitalizeWord(forecast.get('weather').first().get('description')),
+    },
   });
 }
 
-export function fetchCurrentWeatherForZip(zip = DEFAULT_ZIP, callback) {
+function fetchCurrentWeatherForZip(zip = DEFAULT_ZIP, callback) {
   fetch(`${BASE_URL}/weather?zip=${zip},us&appid=${WEATHER_API_KEY}&units=imperial`)
     .then(response => response.json())
     .then(fromJS)
@@ -51,7 +59,7 @@ function threeHourToDaily(threeHourForecast) {
   }, Map()).toList();
 }
 
-export function fetchForecastForZip(zip = DEFAULT_ZIP, callback) {
+function fetchFutureForecastForZip(zip = DEFAULT_ZIP, callback) {
   fetch(`${BASE_URL}/forecast/?zip=${zip},us&appid=${WEATHER_API_KEY}&units=imperial`)
     .then(response => response.json())
     .then(fromJS)
@@ -62,7 +70,7 @@ export function fetchForecastForZip(zip = DEFAULT_ZIP, callback) {
 export function fetchFullFiveDayForecastForZip(zip = DEFAULT_ZIP, callback) {
   fetchCurrentWeatherForZip(zip, (currentWeather) => {
     const fiveDayForecast = List([currentWeather]);
-    fetchForecastForZip(zip, (futureForecast) => {
+    fetchFutureForecastForZip(zip, (futureForecast) => {
       callback(fiveDayForecast.concat(futureForecast));
     })
   });

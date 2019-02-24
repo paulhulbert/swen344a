@@ -1,8 +1,8 @@
 import React from 'react';
-import WeatherSection from './weather/WeatherSection'
+import WeatherSegment from './weather/WeatherSegment'
 
 export default function HomePage() {
   return (
-    <WeatherSection />
+    <WeatherSegment />
   )
 }

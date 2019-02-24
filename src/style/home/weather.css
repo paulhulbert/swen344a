@@ -1,0 +1,18 @@
+.weather-segment {
+  width: 30%;
+  max-width: 400px;
+}
+
+.city-label {
+  margin-top: 0px !important;
+  margin-bottom: 0px !important;
+}
+
+.today-weather {
+  padding-bottom: 8px;
+  text-align: center;
+}
+
+.today-weather-icon {
+  margin-top: 0px !important;
+}

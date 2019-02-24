@@ -79,7 +79,7 @@ function fetchFullFiveDayForecastForZip(todayDate, zip = DEFAULT_ZIP, callback) 
     let fullForecast = List([currentWeather]);
     fetchFutureForecastForZip(zip, (futureForecast) => {
       fullForecast = fullForecast.concat(futureForecast);
-      // cache forecast for future use
+      // cache forecast for future use, and to avoid overloading API
       writeForecast(todayDate, zip, fullForecast)
       callback(fullForecast);
     })

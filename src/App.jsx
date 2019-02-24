@@ -13,6 +13,7 @@ import {
   STOCKS_PAGE_ROUTE,
 } from './constants/routes';
 import './style/app.css';
+import BottomMenu from './components/menu/BottomMenu';
 
 export default class App extends PureComponent {
   render() {
@@ -34,6 +35,7 @@ export default class App extends PureComponent {
               path={STOCKS_PAGE_ROUTE}
               component={StocksPage}
             />
+            <BottomMenu />
           </div>
         </Router>
       </>

@@ -6,11 +6,9 @@ import {
 import { List } from 'immutable';
 import moment from 'moment';
 import { DATE_FORMAT } from '../../../constants/formats';
-import { Segment } from 'semantic-ui-react';
 import '../../../style/home/weather.css';
-import { PRIMARY_COLOR } from '../../../constants/colors';
 
-export default class WeatherSegment extends PureComponent {
+export default class WeatherSection extends PureComponent {
 
   constructor() {
     super();
@@ -50,19 +48,6 @@ export default class WeatherSegment extends PureComponent {
     if (this.state.fetchingWeather) {
       return null;
     }
-    return (
-      <Segment.Group className="weather-segment">
-        <Segment
-          inverted={true}
-          color={PRIMARY_COLOR}
-          textAlign="center"
-        >
-          Weather
-        </Segment>
-        <Segment>
-          {this.state.weather.map(this.renderWeatherItem)}
-        </Segment>
-      </Segment.Group>
-    );
+    return this.state.weather.map(this.renderWeatherItem);
   }
 }

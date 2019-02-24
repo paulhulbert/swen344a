@@ -1,8 +1,33 @@
 import React from 'react';
-import WeatherSegment from './weather/WeatherSegment'
+import WeatherSection from './weather/WeatherSection'
+import '../../style/home/homepage.css'
+import { HomePageSegment } from './HomePageSegment';
+import { Grid, Container } from 'semantic-ui-react';
 
 export default function HomePage() {
   return (
-    <WeatherSegment />
+    <Container>
+      <Grid columns={3}>
+        <Grid.Column>
+          <HomePageSegment
+            title="Twitter"
+          >
+          </HomePageSegment>
+        </Grid.Column>
+        <Grid.Column>
+          <HomePageSegment
+            title="Weather"
+          >
+            <WeatherSection />
+          </HomePageSegment>
+        </Grid.Column>
+          <Grid.Column>
+            <HomePageSegment
+              title="Stocks"
+            >
+            </HomePageSegment>
+        </Grid.Column>
+      </Grid>
+    </Container>
   )
 }

@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import Delay from 'react-delay';
 
-import {auth, firebase} from './index';
+import firebase from './firebase';
+import {getAuth, twitterOAuth} from "./auth";
 
 export default WrappedComponent => {
     class WithAuthentication extends Component {
@@ -9,15 +10,22 @@ export default WrappedComponent => {
             providerData: []
         };
 
+        checkAuthStatusAndRedirect(user) {
+            if (user) {
+                this.setState({ providerData: user.providerData });
+            } else {
+                firebase.auth().signInWithRedirect(twitterOAuth());
+            }
+        }
+
         componentDidMount() {
-            auth.getAuth().onAuthStateChanged(user => {
-                if (user) {
-                    this.setState({ providerData: user.providerData });
-                } else {
-                    console.info('Must be authenticated');
-                    firebase.auth().signInWithRedirect(auth.twitterOAuth());
-                }
+            this.unsubscribe = getAuth().onAuthStateChanged(user => {
+                this.checkAuthStatusAndRedirect(user);
             });
+        }
+
+        componentWillUnmount() {
+            this.unsubscribe && this.unsubscribe();
         }
 
         render() {

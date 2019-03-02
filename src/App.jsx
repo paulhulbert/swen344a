@@ -13,8 +13,8 @@ import {
   CALENDAR_PAGE_ROUTE,
   STOCKS_PAGE_ROUTE,
 } from './constants/routes';
-import 'semantic-ui-css/semantic.min.css';
 import './style/app.css';
+import BottomMenu from './components/menu/BottomMenu';
 
 export default class App extends PureComponent {
   render() {
@@ -36,6 +36,7 @@ export default class App extends PureComponent {
               path={STOCKS_PAGE_ROUTE}
               component={withAuth(StocksPage)}
             />
+            <BottomMenu />
           </div>
         </Router>
       </>

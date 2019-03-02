@@ -10,7 +10,13 @@ try {
 const CONFIG_KEYS = {
   'process.env.API_KEY': 'API_KEY',
   'process.env.AUTH_DOMAIN': 'AUTH_DOMAIN',
+  'process.env.DATABASE_URL': 'DATABASE_URL',
+  'process.env.WEATHER_API_KEY': 'WEATHER_API_KEY',
 };
+
+function formatEnviroVarValue(value) {
+  return `'${value}'`;
+}
 
 function map(obj, transformation) {
   for (var key in obj) {
@@ -23,9 +29,9 @@ function map(obj, transformation) {
 
 function getConfigurationValue(label) {
   if (appConfig) {
-    return appConfig[label];
+    return formatEnviroVarValue(appConfig[label]);
   }
-  return `'${process.env[label]}'`;
+  return formatEnviroVarValue(process.env[label]);
 }
 
 module.exports = {
@@ -77,6 +83,6 @@ module.exports = {
   },
   devServer: {
     contentBase: './public',
-    hot: true
-  }
+    hot: true,
+  },
 };

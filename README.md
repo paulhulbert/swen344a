@@ -12,10 +12,16 @@ Members of the project can see the firebase values needed by adding this path to
 
 You can also find these values on the Firebase console in "Project Settings" under the "General" tab
 
-| Config Key  | Description                                                  |
-| ----------- | ------------------------------------------------------------ |
-| API_KEY     | The property called "Web API Key" in the Firebase settings general tab |
-| AUTH_DOMAIN | Your "Project ID" from the Firebase settings general tab appended with ".firebaseapp.com", i.e. `web-engineering-spring-2019.firebaseapp.com` |
+**Config Key Breakdown**
+
+| Config Key      | Description                                                  |
+| --------------- | ------------------------------------------------------------ |
+| API_KEY         | The property called "Web API Key" in the Firebase settings general tab |
+| AUTH_DOMAIN     | Your "Project ID" from the Firebase settings general tab appended with ".firebaseapp.com", i.e. `your-project-id.firebaseapp.com` |
+| DATABASE_URL    | Found by going to "Database" then "Realtime Database" in the Firebase console, should be near the top of the page next to a link icon, takes the format of  `https://your-project-id.firebaseio.com/` |
+| WEATHER_API_KEY | Your API key for https://openweathermap.org/                 |
+
+**Environment Variables**
 
 You can also pass these values in as environment variables to the Node applicaiton like so
 

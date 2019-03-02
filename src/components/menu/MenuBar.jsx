@@ -13,6 +13,7 @@ import {
   CALENDAR_PAGE_ROUTE,
   STOCKS_PAGE_ROUTE,
 } from '../../constants/routes';
+import PropTypes from 'prop-types';
 
 class MenuBar extends PureComponent {
   renderMenuItem(name, route) {
@@ -43,6 +44,10 @@ class MenuBar extends PureComponent {
       </Menu>
     );
   }
+}
+
+MenuBar.propTypes = {
+  location: PropTypes.object.isRequired,
 }
 
 export default withRouter(MenuBar);

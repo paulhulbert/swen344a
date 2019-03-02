@@ -9,7 +9,7 @@ import org.openqa.selenium.*;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.ui.Select;
 
-public class TestSWEN344 {
+public class ViewingTwitter {
   private WebDriver driver;
   private String baseUrl;
   private boolean acceptNextAlert = true;
@@ -23,14 +23,11 @@ public class TestSWEN344 {
   }
 
   @Test
-  public void testSWEN344() throws Exception {
-    driver.get("http://localhost:8080/");
-    // Warning: verifyTextPresent may require manual changes
-    try {
-      assertTrue(driver.findElement(By.cssSelector("BODY")).getText().matches("^[\\s\\S]*$"));
-    } catch (Error e) {
-      verificationErrors.append(e.toString());
-    }
+  public void testViewingTwitter() throws Exception {
+    driver.get("https://web-engineering-spring-2019.firebaseapp.com/");
+    // ERROR: Caught exception [ERROR: Unsupported command [selectFrame | index=1 | ]]
+    driver.findElement(By.linkText("View on Twitter")).click();
+    // ERROR: Caught exception [ERROR: Unsupported command [selectWindow | win_ser_1 | ]]
   }
 
   @After

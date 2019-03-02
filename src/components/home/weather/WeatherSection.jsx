@@ -7,6 +7,7 @@ import { List } from 'immutable';
 import moment from 'moment';
 import { DATE_FORMAT } from '../../../constants/formats';
 import '../../../style/home/weather.css';
+import LoadingState from '../../common/LoadingState';
 
 export default class WeatherSection extends PureComponent {
 
@@ -46,7 +47,7 @@ export default class WeatherSection extends PureComponent {
 
   render() {
     if (this.state.fetchingWeather) {
-      return null;
+      return <LoadingState />;
     }
     return this.state.weather.map(this.renderWeatherItem);
   }

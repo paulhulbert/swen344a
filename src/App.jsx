@@ -12,9 +12,11 @@ import {
   INDEX_PAGE_ROUTE,
   CALENDAR_PAGE_ROUTE,
   STOCKS_PAGE_ROUTE,
+  LOGIN_PAGE_ROUTE,
 } from './constants/routes';
 import './style/app.css';
 import BottomMenu from './components/menu/BottomMenu';
+import LoginPage from './components/login/LoginPage';
 
 export default class App extends PureComponent {
   render() {
@@ -35,6 +37,10 @@ export default class App extends PureComponent {
             <Route
               path={STOCKS_PAGE_ROUTE}
               component={withAuth(StocksPage)}
+            />
+            <Route
+              path={LOGIN_PAGE_ROUTE}
+              component={LoginPage}
             />
             <BottomMenu />
           </div>

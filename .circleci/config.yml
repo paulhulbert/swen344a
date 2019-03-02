@@ -48,7 +48,7 @@ workflows:
   build_deploy_master:
     jobs:
       -build
-  branches:
-    only:
-      - master
-      - beta
+    branches:
+      only:
+        - master
+        - beta

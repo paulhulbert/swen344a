@@ -47,7 +47,7 @@ workflows:
   version: 2.1
   build_deploy_master:
     jobs:
-      -build
+      - build
     branches:
       only:
         - master

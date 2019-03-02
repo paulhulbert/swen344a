@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "webpack-dev-server --config ./webpack.config.js --mode development",
+    "start": "webpack-dev-server --config ./webpack.config.js --mode development -d",
     "build": "webpack --mode production"
   },
   "repository": {
@@ -32,10 +32,19 @@
     "webpack-dev-server": "^3.1.14"
   },
   "dependencies": {
+    "@babel/plugin-proposal-class-properties": "^7.3.3",
+    "firebase": "^5.8.4",
+    "fullcalendar-reactwrapper": "^1.0.7",
     "immutable": "^4.0.0-rc.12",
+    "moment": "^2.24.0",
+    "prop-types": "^15.7.2",
     "react": "^16.8.2",
+    "react-delay": "^0.1.0",
     "react-dom": "^16.8.2",
     "selenium-webdriver": "^4.0.0-alpha.1",
+    "react-immutable-proptypes": "^2.1.0",
+    "react-router-dom": "^4.3.1",
+    "react-twitter-embed": "^2.0.4",
     "semantic-ui-css": "^2.4.1",
     "semantic-ui-react": "^0.85.0"
   }

@@ -1,25 +1,34 @@
 import React, { Component } from 'react';
-import Delay from 'react-delay';
 
-import firebase from './firebase';
-import {getAuth, twitterOAuth} from "./auth";
+import { FIREBASE_AUTH_INSTANCE } from "./auth";
+import { Redirect } from 'react-router-dom';
+
+import LoadingState from '../components/common/LoadingState';
+import { LOGIN_PAGE_ROUTE } from '../constants/routes';
 
 export default WrappedComponent => {
     class WithAuthentication extends Component {
         state = {
-            providerData: []
+            authFetching: true,
+            providerData: [],
         };
 
         checkAuthStatusAndRedirect(user) {
             if (user) {
-                this.setState({ providerData: user.providerData });
+                this.setState({
+                  authFetching: false,
+                  providerData: user.providerData,
+                });
             } else {
-                firebase.auth().signInWithRedirect(twitterOAuth());
+              this.setState({
+                authFetching: false,
+                providerData: [],
+              });
             }
         }
 
         componentDidMount() {
-            this.unsubscribe = getAuth().onAuthStateChanged(user => {
+            this.unsubscribe = FIREBASE_AUTH_INSTANCE().onAuthStateChanged(user => {
                 this.checkAuthStatusAndRedirect(user);
             });
         }
@@ -29,16 +38,20 @@ export default WrappedComponent => {
         }
 
         render() {
-            return this.state.providerData.length > 0 ? (
-                <WrappedComponent
-                    {...this.props}
-                    providerData={this.state.providerData}
-                />
-            ) : (
-                <Delay wait={250}>
-                    <p>Loading...</p>
-                </Delay>
+          if (this.state.providerData.length > 0) {
+            return (
+              <WrappedComponent
+                {...this.props}
+                providerData={this.state.providerData}
+              />
             );
+          }
+          if (this.state.authFetching) {
+            return <LoadingState />
+          }
+          return (
+            <Redirect to={LOGIN_PAGE_ROUTE} />
+          )
         }
     }
 

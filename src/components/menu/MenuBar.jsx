@@ -14,6 +14,7 @@ import {
   STOCKS_PAGE_ROUTE,
 } from '../../constants/routes';
 import PropTypes from 'prop-types';
+import LogOutButton from '../login/LogOutButton';
 
 class MenuBar extends PureComponent {
   renderMenuItem(name, route) {
@@ -31,6 +32,14 @@ class MenuBar extends PureComponent {
     )
   }
 
+  renderLogOutButton() {
+    return (
+      <Menu.Item>
+        <LogOutButton />
+      </Menu.Item>
+    )
+  }
+
   render() {
     return (
       <Menu
@@ -41,6 +50,11 @@ class MenuBar extends PureComponent {
         {this.renderMenuItem('SÜT', INDEX_PAGE_ROUTE)}
         {this.renderMenuItem('Calendar', CALENDAR_PAGE_ROUTE)}
         {this.renderMenuItem('Stocks', STOCKS_PAGE_ROUTE)}
+        <Menu.Menu
+          position='right'
+        >
+          {this.renderLogOutButton()}
+        </Menu.Menu>
       </Menu>
     );
   }

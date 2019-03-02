@@ -3,8 +3,11 @@ import WeatherSection from './weather/WeatherSection'
 import '../../style/home/homepage.css'
 import { HomePageSegment } from './HomePageSegment';
 import { Grid, Container } from 'semantic-ui-react';
+import Twitter from "./Twitter";
 
-export default function HomePage() {
+export default function HomePage({
+ providerData,
+}) {
   return (
     <Container>
       <Grid
@@ -15,6 +18,9 @@ export default function HomePage() {
           <HomePageSegment
             title="Twitter"
           >
+            <Twitter
+                providerData={providerData}
+            />
           </HomePageSegment>
         </Grid.Column>
         <Grid.Column>

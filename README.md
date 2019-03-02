@@ -23,7 +23,7 @@ You can also find these values on the Firebase console in "Project Settings" und
 
 **Environment Variables**
 
-You can also pass these values in as environment variables to the Node applicaiton like so
+You can also pass these values in as environment variables to the Node application like so
 
 ``` bash
 # run the project locally
@@ -69,4 +69,3 @@ $ firebase deploy
 ``` bash
 $ firebase serve
 ```
-

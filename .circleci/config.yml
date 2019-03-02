@@ -37,7 +37,7 @@ jobs:
       - run: cd functions && npm install
       - run:
           name: Build the app
-          command: npm run build
+          command: API_KEY=$API_KEY AUTH_TOKEN=$AUTH_TOKEN npm run build
       - run:
           name: Deploy to Firebase
           command: ./firebase-deploy/node_modules/.bin/firebase deploy --token=$FIREBASE_DEPLOY_TOKEN

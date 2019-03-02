@@ -70,3 +70,4 @@ public
 .idea/
 
 .DS_Store
+config.js

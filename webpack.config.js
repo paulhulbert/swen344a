@@ -1,5 +1,33 @@
 const webpack = require('webpack');
 
+let appConfig = null;
+try {
+  appConfig = require('./config.js');
+} catch (e) {
+  console.warn('No config file, using environment variables')
+}
+
+const CONFIG_KEYS = {
+  'process.env.API_KEY': 'API_KEY',
+  'process.env.AUTH_DOMAIN': 'AUTH_DOMAIN',
+};
+
+function map(obj, transformation) {
+  for (var key in obj) {
+    if (obj.hasOwnProperty(key)) {
+      obj[key] = transformation(obj[key]);
+    }
+  }
+  return obj;
+}
+
+function getConfigurationValue(label) {
+  if (appConfig) {
+    return appConfig[label];
+  }
+  return `'${process.env[label]}'`;
+}
+
 module.exports = {
   entry: './src/index.js',
   output: {
@@ -41,7 +69,8 @@ module.exports = {
     ]
   },
   plugins: [
-    new webpack.HotModuleReplacementPlugin()
+    new webpack.HotModuleReplacementPlugin(),
+    new webpack.DefinePlugin(map(CONFIG_KEYS, getConfigurationValue)),
   ],
   resolve: {
     extensions: ['*', '.js', '.jsx']

@@ -1,10 +1,6 @@
 import firebase from 'firebase/app';
 import 'firebase/auth'
 
-export const getAuth = () => {
-    return firebase.auth();
-};
+export const FIREBASE_AUTH_INSTANCE = firebase.auth;
 
-export const twitterOAuth = () => {
-    return new firebase.auth.TwitterAuthProvider();
-};
+export const OAUTH_PROVIDER = new firebase.auth.TwitterAuthProvider();

@@ -5,8 +5,13 @@ import firebase from 'firebase/app';
 import 'firebase/database';
 import { WEATHER_CACHE_LENGTH_MINS } from '../../constants/weatherConstants';
 
+const WEATHER_API_KEY = process.env.WEATHER_API_KEY;
+
+if (!WEATHER_API_KEY) {
+  console.warn('No weather API key detected');
+}
+
 // API Docs: https://openweathermap.org/api
-const WEATHER_API_KEY = '08e5475b6a4cf6a8daaec9f44e76575f';
 const BASE_URL = 'https://api.openweathermap.org/data/2.5'
 const DEFAULT_ZIP = 14623 //Henrietta, NY
 

@@ -20,10 +20,11 @@ export default class LoginPage extends PureComponent {
     }
   }
 
-  handleUpdateUserLoggedIn(loggedIn) {
+  handleUpdateUserLoggedIn(loggedIn, username) {
     this.setState({
       loggedIn: loggedIn,
       loggingIn: false,
+      username: username,
     });
   }
 
@@ -31,10 +32,10 @@ export default class LoginPage extends PureComponent {
     this.setState({
       loggingIn: true,
     })
-    FIREBASE_AUTH_INSTANCE().signInWithPopup(OAUTH_PROVIDER).then(() => {
-      this.handleUpdateUserLoggedIn(true);
+    FIREBASE_AUTH_INSTANCE().signInWithPopup(OAUTH_PROVIDER).then((result) => {
+      this.handleUpdateUserLoggedIn(true, result.user.displayName);
     }).catch(() => {
-      this.handleUpdateUserLoggedIn(false);
+      this.handleUpdateUserLoggedIn(false, '');
     });
   }
 

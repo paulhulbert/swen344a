@@ -5,24 +5,29 @@ import { Redirect } from 'react-router-dom';
 
 import LoadingState from '../components/common/LoadingState';
 import { LOGIN_PAGE_ROUTE } from '../constants/routes';
-import { fromJS, Map } from 'immutable';
+import { Map } from 'immutable';
 
 export default WrappedComponent => {
     class WithAuthentication extends Component {
         state = {
             authFetching: true,
+            loggedIn: false,
             providerData: Map(),
         };
 
-        updateAuthState(providerData) {
-          if (providerData && providerData.size) {
+        updateAuthState(user) {
+          const loggedIn = !!user;
+          if (user && user.providerData && user.providerData.length) {
+            const providerData = Map(user.providerData[0]);
             this.setState({
               authFetching: false,
-              providerData: providerData.first(),
+              loggedIn,
+              providerData,
             });
           } else {
             this.setState({
               authFetching: false,
+              loggedIn,
               providerData: Map(),
             });
           }
@@ -30,7 +35,7 @@ export default WrappedComponent => {
 
         componentDidMount() {
             this.unsubscribe = FIREBASE_AUTH_INSTANCE().onAuthStateChanged(user => {
-              this.updateAuthState(fromJS(user.providerData));
+              this.updateAuthState(user);
             });
         }
 
@@ -39,7 +44,7 @@ export default WrappedComponent => {
         }
 
         render() {
-          if (this.state.providerData.size > 0) {
+          if (this.state.loggedIn) {
             return (
               <WrappedComponent
                 {...this.props}

@@ -5,12 +5,16 @@ import {
 } from "react-twitter-embed";
 import { Grid } from 'semantic-ui-react';
 import ImmutablePropTypes from 'react-immutable-proptypes';
+import LoadingState from '../../common/LoadingState';
 
 const DEFAULT_TWITTER_TEXT = '';
 
 export default function TwitterSection({
   authProviderData,
 }) {
+  if (!authProviderData || !authProviderData.size) {
+    return <LoadingState />
+  }
   return (
     <Grid
       centered={true}
@@ -40,5 +44,5 @@ export default function TwitterSection({
 }
 
 TwitterSection.propTypes = {
-  authProviderData: ImmutablePropTypes.map.isRequired,
+  authProviderData: ImmutablePropTypes.map,
 }

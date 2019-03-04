@@ -43,7 +43,7 @@ export default WrappedComponent => {
             return (
               <WrappedComponent
                 {...this.props}
-                authProvierData={this.state.providerData}
+                authProviderData={this.state.providerData}
               />
             );
           }

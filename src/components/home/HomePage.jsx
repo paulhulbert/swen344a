@@ -7,7 +7,7 @@ import TwitterSection from "./twitter/TwitterSection";
 import ImmutablePropTypes from 'react-immutable-proptypes';
 
 export default function HomePage({
-  authProvierData,
+  authProviderData,
 }) {
   return (
     <Container>
@@ -20,7 +20,7 @@ export default function HomePage({
             title="Twitter"
           >
             <TwitterSection
-              authProvierData={authProvierData}
+              authProviderData={authProviderData}
             />
           </HomePageSegment>
         </Grid.Column>
@@ -43,5 +43,5 @@ export default function HomePage({
 }
 
 HomePage.propTypes = {
-  authProvierData: ImmutablePropTypes.map.isRequired,
+  authProviderData: ImmutablePropTypes.map.isRequired,
 }

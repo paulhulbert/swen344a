@@ -9,7 +9,7 @@ import ImmutablePropTypes from 'react-immutable-proptypes';
 const DEFAULT_TWITTER_TEXT = '';
 
 export default function TwitterSection({
-  authProvierData,
+  authProviderData,
 }) {
   return (
     <Grid
@@ -21,7 +21,7 @@ export default function TwitterSection({
       <Grid.Row>
         <TwitterTimelineEmbed
           sourceType="profile"
-          userId={authProvierData.get('uid')}
+          userId={authProviderData.get('uid')}
           options={{
             height: 530,
           }}
@@ -40,5 +40,5 @@ export default function TwitterSection({
 }
 
 TwitterSection.propTypes = {
-  authProvierData: ImmutablePropTypes.map.isRequired,
+  authProviderData: ImmutablePropTypes.map.isRequired,
 }

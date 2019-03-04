@@ -5,31 +5,32 @@ import { Redirect } from 'react-router-dom';
 
 import LoadingState from '../components/common/LoadingState';
 import { LOGIN_PAGE_ROUTE } from '../constants/routes';
+import { fromJS, Map } from 'immutable';
 
 export default WrappedComponent => {
     class WithAuthentication extends Component {
         state = {
             authFetching: true,
-            providerData: [],
+            providerData: Map(),
         };
 
-        checkAuthStatusAndRedirect(user) {
-            if (user) {
-                this.setState({
-                  authFetching: false,
-                  providerData: user.providerData,
-                });
-            } else {
-              this.setState({
-                authFetching: false,
-                providerData: [],
-              });
-            }
+        updateAuthState(providerData) {
+          if (providerData && providerData.size) {
+            this.setState({
+              authFetching: false,
+              providerData: providerData.first(),
+            });
+          } else {
+            this.setState({
+              authFetching: false,
+              providerData: Map(),
+            });
+          }
         }
 
         componentDidMount() {
             this.unsubscribe = FIREBASE_AUTH_INSTANCE().onAuthStateChanged(user => {
-                this.checkAuthStatusAndRedirect(user);
+              this.updateAuthState(fromJS(user.providerData));
             });
         }
 
@@ -38,11 +39,11 @@ export default WrappedComponent => {
         }
 
         render() {
-          if (this.state.providerData.length > 0) {
+          if (this.state.providerData.size > 0) {
             return (
               <WrappedComponent
                 {...this.props}
-                providerData={this.state.providerData}
+                authProviderData={this.state.providerData}
               />
             );
           }

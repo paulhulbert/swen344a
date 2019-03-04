@@ -3,11 +3,10 @@ import WeatherSection from './weather/WeatherSection'
 import '../../style/home/homepage.css'
 import { HomePageSegment } from './HomePageSegment';
 import { Grid, Container } from 'semantic-ui-react';
-import TwitterSection from "./twitter/TwitterSection";
-import ImmutablePropTypes from 'react-immutable-proptypes';
+import Twitter from "./Twitter";
 
 export default function HomePage({
-  authProviderData,
+ providerData,
 }) {
   return (
     <Container>
@@ -19,8 +18,8 @@ export default function HomePage({
           <HomePageSegment
             title="Twitter"
           >
-            <TwitterSection
-              authProviderData={authProviderData}
+            <Twitter
+                providerData={providerData}
             />
           </HomePageSegment>
         </Grid.Column>
@@ -40,8 +39,4 @@ export default function HomePage({
       </Grid>
     </Container>
   )
-}
-
-HomePage.propTypes = {
-  authProviderData: ImmutablePropTypes.map.isRequired,
 }

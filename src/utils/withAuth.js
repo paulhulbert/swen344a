@@ -5,37 +5,31 @@ import { Redirect } from 'react-router-dom';
 
 import LoadingState from '../components/common/LoadingState';
 import { LOGIN_PAGE_ROUTE } from '../constants/routes';
-import { Map } from 'immutable';
 
 export default WrappedComponent => {
     class WithAuthentication extends Component {
         state = {
             authFetching: true,
-            loggedIn: false,
-            providerData: Map(),
+            providerData: [],
         };
 
-        updateAuthState(user) {
-          const loggedIn = !!user;
-          if (user && user.providerData && user.providerData.length) {
-            const providerData = Map(user.providerData[0]);
-            this.setState({
-              authFetching: false,
-              loggedIn,
-              providerData,
-            });
-          } else {
-            this.setState({
-              authFetching: false,
-              loggedIn,
-              providerData: Map(),
-            });
-          }
+        checkAuthStatusAndRedirect(user) {
+            if (user) {
+                this.setState({
+                  authFetching: false,
+                  providerData: user.providerData,
+                });
+            } else {
+              this.setState({
+                authFetching: false,
+                providerData: [],
+              });
+            }
         }
 
         componentDidMount() {
             this.unsubscribe = FIREBASE_AUTH_INSTANCE().onAuthStateChanged(user => {
-              this.updateAuthState(user);
+                this.checkAuthStatusAndRedirect(user);
             });
         }
 
@@ -44,11 +38,11 @@ export default WrappedComponent => {
         }
 
         render() {
-          if (this.state.loggedIn) {
+          if (this.state.providerData.length > 0) {
             return (
               <WrappedComponent
                 {...this.props}
-                authProviderData={this.state.providerData}
+                providerData={this.state.providerData}
               />
             );
           }

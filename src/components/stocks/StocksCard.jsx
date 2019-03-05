@@ -72,6 +72,11 @@ export default function StocksCard({stockData}){
                     {renderPriceAndNetChange(stockData.get(STOCK_FIELD_NAMES.PRICE), calculateNetChange(stockData))}
                 </Card.Description>
             </Card.Content>
+            <Card.Content extra>
+                <Card.Meta>
+                    0 Shares
+                </Card.Meta>
+            </Card.Content>
         </Card>
     )
 }

@@ -4,6 +4,7 @@ import '../../style/home/homepage.css'
 import { HomePageSegment } from './HomePageSegment';
 import { Grid, Container } from 'semantic-ui-react';
 import TwitterSection from "./twitter/TwitterSection";
+import StocksSection from './stocks/StocksSection';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 
 export default function HomePage({
@@ -31,11 +32,12 @@ export default function HomePage({
             <WeatherSection />
           </HomePageSegment>
         </Grid.Column>
-          <Grid.Column>
-            <HomePageSegment
-              title="Stocks"
-            >
-            </HomePageSegment>
+        <Grid.Column>
+          <HomePageSegment
+            title="Stocks"
+          >
+            <StocksSection/>
+          </HomePageSegment>
         </Grid.Column>
       </Grid>
     </Container>

@@ -8,28 +8,23 @@ function calculateNetChange(stockData){
     return stockData.get(STOCK_FIELD_NAMES.PRICE) - stockData.get(STOCK_FIELD_NAMES.OPEN_PRICE);
 }
 
-function getIconColor(netChange){
+function getIconProps(netChange){
     if (netChange > 0){
-        return 'green';
+        return {
+            color: 'green',
+            name: 'arrow circle up'
+        };
     }
-    else if (netChange < 0){
-        return 'red';
+    if (netChange < 0){
+        return {
+            color: 'red',
+            name: 'arrow circle down'
+        };
     }
-    else{
-        return 'gray';
-    }
-}
-
-function getNetChangeIconName(netChange){
-    if (netChange > 0){
-        return 'arrow circle up';
-    }
-    else if (netChange < 0){
-        return 'arrow circle down';
-    }
-    else{
-        return 'cirlce';
-    }
+    return {
+        color: 'gray',
+        name: 'circle'
+    };
 }
 
 function renderPriceAndNetChange(price, netChange) {
@@ -48,7 +43,7 @@ function renderPriceAndNetChange(price, netChange) {
           <Header
             sub={true}
           >
-            <Icon name={getNetChangeIconName(netChange)} color={getIconColor(netChange)}/>
+            <Icon {...getIconProps(netChange)}/>
           </Header>
         </List.Item>
       </List>
@@ -56,10 +51,11 @@ function renderPriceAndNetChange(price, netChange) {
   }
 
 export default function StocksCard({stockData}){
+    const netChange = calculateNetChange(stockData);
     return(
         <Card
             fluid={true}
-            color={getIconColor(calculateNetChange(stockData))}
+            color={getIconProps(netChange).color}
         >
             <Card.Content>
                 <Card.Header>
@@ -69,7 +65,7 @@ export default function StocksCard({stockData}){
                     {stockData.get(STOCK_FIELD_NAMES.COMPANY_NAME)}
                 </Card.Meta>
                 <Card.Description>
-                    {renderPriceAndNetChange(stockData.get(STOCK_FIELD_NAMES.PRICE), calculateNetChange(stockData))}
+                    {renderPriceAndNetChange(stockData.get(STOCK_FIELD_NAMES.PRICE), netChange)}
                 </Card.Description>
             </Card.Content>
             <Card.Content extra>

@@ -2,7 +2,8 @@ import React, { PureComponent } from 'react';
 import LoadingState from '../../common/LoadingState';
 import StocksCard from '../../stocks/StocksCard';
 import { Map } from 'immutable';
-import { fetchStocks } from '../../../utils/stocks/stocksUtils';
+import { fetchTopStocks } from '../../../utils/stocks/stocksUtils';
+import { STOCK_FIELD_NAMES } from '../../../constants/stocksConstants';
 
 
 export default class StocksSection extends PureComponent{
@@ -19,7 +20,7 @@ export default class StocksSection extends PureComponent{
 
 
     componentDidMount(){
-        fetchStocks(this.handleUpdateStocks);
+        fetchTopStocks(this.handleUpdateStocks);
     }
 
     handleUpdateStocks(stocks){
@@ -31,7 +32,7 @@ export default class StocksSection extends PureComponent{
 
     renderIndividualStock(stock){
         return (
-            <div>
+            <div key={stock.get(STOCK_FIELD_NAMES.SYMBOL)}>
                 <StocksCard
                     stockData = {stock}
                 />

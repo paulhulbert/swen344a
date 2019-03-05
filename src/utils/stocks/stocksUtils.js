@@ -15,7 +15,7 @@ function getStockSymbols(stocks) {
     return stocks.toJS().join(',');
 }
 
-export function fetchStocks(callback) {
+export function fetchTopStocks(callback) {
     fetchStockData(DEFAULTS_STOCKS, callback);
 }
 

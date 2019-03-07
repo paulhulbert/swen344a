@@ -26,6 +26,16 @@ public class StockTicker {
   public void testStockTicker() throws Exception {
     driver.get("https://web-engineering-spring-2019.firebaseapp.com/");
     driver.findElement(By.linkText("Stocks")).click();
+    driver.findElement(By.linkText("MSFT")).click();
+    driver.findElement(By.linkText("AAPL")).click();
+    driver.findElement(By.linkText("SNAP")).click();
+    driver.findElement(By.linkText("TSLA")).click();
+    driver.findElement(By.linkText("GOOG")).click();
+    driver.findElement(By.linkText("5 Day")).click();
+    driver.findElement(By.linkText("1 Month")).click();
+    driver.findElement(By.linkText("6 Months")).click();
+    driver.findElement(By.linkText("YTD")).click();
+    driver.findElement(By.linkText("1 Year")).click();
   }
 
   @After

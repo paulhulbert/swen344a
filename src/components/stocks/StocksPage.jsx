@@ -2,7 +2,7 @@ import React, { PureComponent } from 'react';
 import { StocksChart } from './StocksChart';
 import { Map } from 'immutable';
 import LoadingState from '../common/LoadingState';
-import { fetchOneYearStockChartData } from '../../utils/stocks/stocksUtils';
+import { getOneYearStockChartData } from '../../utils/stocks/stocksUtils';
 
 export default class StocksPage extends PureComponent {
 
@@ -10,7 +10,7 @@ export default class StocksPage extends PureComponent {
     super();
     this.state = {
       chartDataByTicker: Map(),
-      selectedTicker: 'AAPL',
+      selectedTicker: null,
       fetchingChartData: false,
     }
     this.handleAddStockDataForTicker = this.handleAddStockDataForTicker.bind(this);
@@ -18,7 +18,7 @@ export default class StocksPage extends PureComponent {
   }
 
   componentDidMount() {
-    this.handleSelectTicker('AAPL');
+    this.handleSelectTicker('GOOG');
   }
 
   handleAddStockDataForTicker(ticker, stockData) {
@@ -33,7 +33,7 @@ export default class StocksPage extends PureComponent {
         fetchingChartData: true,
         selectedTicker,
       });
-      fetchOneYearStockChartData(selectedTicker, this.handleAddStockDataForTicker)
+      getOneYearStockChartData(selectedTicker, this.handleAddStockDataForTicker)
     } else {
       this.setState({
         fetchingChartData: false,

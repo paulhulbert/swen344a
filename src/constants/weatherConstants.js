@@ -1,1 +1,0 @@
-export const WEATHER_CACHE_LENGTH_MINS = 5;

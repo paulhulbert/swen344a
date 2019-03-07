@@ -42,7 +42,6 @@ export default class App extends PureComponent {
               path={LOGIN_PAGE_ROUTE}
               component={LoginPage}
             />
-            <BottomMenu />
           </div>
         </Router>
       </>

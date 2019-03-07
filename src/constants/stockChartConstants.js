@@ -7,16 +7,17 @@ export const CHART_TYPES = {
   ONE_YEAR: 'ONE_YEAR',
   YEAR_TO_DATE: 'YEAR_TO_DATE',
   SIX_MONTHS: 'SIX_MONTHS',
-  THREE_MONTHS: 'THREE_MONTHS',
   ONE_MONTH: 'ONE_MONTH',
-  ONE_WEEK: 'ONE_WEEK',
+  FIVE_DAY: 'FIVE_DAY',
   ONE_DAY: 'ONE_DAY',
 }
 
 export const API_DATE_FORMAT = 'YYYY-MM-DD';
 
 export const CHART_DATE_FORMATS = {
-  [CHART_TYPES.ONE_YEAR]: 'DD MMMM YYYY'
+  [CHART_TYPES.YEAR_TO_DATE]: 'DD MMMM',
+  [CHART_TYPES.FIVE_DAY]: 'DD MMMM',
+  DEFAULT: 'DD MMMM YYYY',
 }
 
 export const LINE_COLOR = 'rgba(0, 0, 0, 0.5)';
@@ -30,7 +31,6 @@ export const CHART_OPTIONS = {
   scales: {
     yAxes: [{
       ticks: {
-        beginAtZero: true,
         callback: value => `$${value}`,
       },
       // hide Y axis lines

@@ -1,6 +1,6 @@
 import { DEFAULTS_STOCKS, STOCK_FIELDS_TO_KEEP } from '../../constants/stocksConstants';
 import { fromJS, Map } from 'immutable';
-import { CHART_DAY_FIELDS, CHART_DATE_FORMATS, API_DATE_FORMAT } from '../../constants/stockChartConstants';
+import { CHART_DAY_FIELDS, CHART_DATE_FORMATS, API_DATE_FORMAT, CHART_TYPES } from '../../constants/stockChartConstants';
 import { CACHE_LENGTH_MINS } from '../../constants/cacheConstants';
 import { DATE_FORMAT } from '../../constants/formats';
 import moment from 'moment';
@@ -44,17 +44,41 @@ function getStockChartPath(ticker, date) {
 }
 
 export function getChartLabels(chartType, chartData) {
-    return chartData.map((dataPoint) => {
-        const pointDate = moment(dataPoint.get(CHART_DAY_FIELDS.DATE), API_DATE_FORMAT);
-        return pointDate.format(CHART_DATE_FORMATS[chartType]);
-    })
+    const chartDateFormat = CHART_DATE_FORMATS[chartType] || CHART_DATE_FORMATS.DEFAULT;
+    return chartData.map((dataPoint) => moment(dataPoint.get('dayMoment')).format(chartDateFormat));
+}
+
+function formatOneYearDataToCutoffDate(oneYearData, cutoffMoment) {
+    return oneYearData.filter((dataPoint) => moment(dataPoint.get('dayMoment')) >= cutoffMoment);
+}
+
+function formatOneYearDataToFiveDay(oneYearData) {
+    return oneYearData.slice(-5);
+}
+
+export function formatOneYearDataToChartType(oneYearData, chartType) {
+    const lastRecordedDay = moment(oneYearData.last().get('dayMoment')).startOf('day');
+    switch (chartType) {
+        case CHART_TYPES.YEAR_TO_DATE:
+            return formatOneYearDataToCutoffDate(oneYearData, lastRecordedDay.clone().startOf('year'));
+        case CHART_TYPES.SIX_MONTHS:
+            return formatOneYearDataToCutoffDate(oneYearData, lastRecordedDay.clone().subtract(6, 'month'));
+        case CHART_TYPES.ONE_MONTH:
+            return formatOneYearDataToCutoffDate(oneYearData, lastRecordedDay.clone().subtract(1, 'month'));
+        case CHART_TYPES.FIVE_DAY:
+            return formatOneYearDataToFiveDay(oneYearData);
+        case CHART_TYPES.ONE_YEAR:
+        default:
+            return oneYearData;
+    }
 }
 
 function parseStockChartData(rawData) {
     return rawData.map((dayData) => {
+        const dayMoment = moment(dayData.get(CHART_DAY_FIELDS.DATE), API_DATE_FORMAT).valueOf();
         return Map({
             [CHART_DAY_FIELDS.CLOSE]: dayData.get(CHART_DAY_FIELDS.CLOSE),
-            [CHART_DAY_FIELDS.DATE]: dayData.get(CHART_DAY_FIELDS.DATE),
+            dayMoment,
         })
     });
 }

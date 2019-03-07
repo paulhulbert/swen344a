@@ -6,18 +6,6 @@ import {
 } from '../../constants/stocksConstants';
 import { formatStockValue } from '../../utils/stocks/stocksUtils';
 
-const stockData = fromJS({
-  "symbol": "AAPL",
-  "companyName": "Apple Inc.",
-  "latestPrice": 174.52,
-  "open": 174.67,
-  "close": 174.52,
-  "high": 175.49,
-  "low": 173.94,
-  "week52High": 233.47,
-  "week52Low": 142,
-});
-
 const STOCK_FIELD_LABELS = fromJS([
   { 
     label: 'Previous Close',
@@ -73,7 +61,9 @@ function renderStockFields(stock) {
   )
 }
 
-export default function StockInformation() {
+export default function StockInformation({
+  stockData,
+}) {
   return (
     <div>
       <Header as="h4" inverted={true}>

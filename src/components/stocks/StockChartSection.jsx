@@ -6,6 +6,7 @@ import StockInformation from './StockInformation';
 import ChartTypePicker from './ChartTypePicker';
 import { formatOneYearDataToChartType } from '../../utils/stocks/stocksUtils';
 import { CHART_TYPES } from '../../constants/stockChartConstants';
+import LoadingState from '../common/LoadingState';
 
 export default class StockChartSection extends PureComponent {
 
@@ -30,17 +31,13 @@ export default class StockChartSection extends PureComponent {
 
   render() {
     const { ticker } = this.props;
+    if (!this.props.stockChartData) {
+      return <LoadingState />;
+    }
     return (
       <Segment.Group
         className="stock-chart-segment"
       >
-        <Segment
-          inverted={true}
-          color={PRIMARY_COLOR}
-          textAlign="center"
-        >
-          {ticker}
-        </Segment>
         <Segment>
           <ChartTypePicker
             activeChartType={this.state.activeChartType}
@@ -52,7 +49,9 @@ export default class StockChartSection extends PureComponent {
           inverted={true}
           color={PRIMARY_COLOR}
         >
-          <StockInformation />
+          <StockInformation
+            stockData={this.props.selectedStock}
+          />
         </Segment>
       </Segment.Group>
     )

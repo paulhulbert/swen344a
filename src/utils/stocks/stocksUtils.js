@@ -9,7 +9,7 @@ import 'firebase/database';
 
 const BASE_URL = 'https://api.iextrading.com/1.0/stock';
 
-export const formatStockValue = value => `$${value}`;
+export const formatStockValue = value => value ? `$${value}` : 'Unknown';
 
 function processIndividualStockData(stock) {
     return stock.get('quote').filter((_, key) => {

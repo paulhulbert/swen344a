@@ -1,9 +1,9 @@
 import { fromJS, Map, List } from 'immutable';
 import moment from 'moment';
 import { DATE_FORMAT } from '../../constants/formats';
+import { CACHE_LENGTH_MINS } from '../../constants/cacheConstants';
 import firebase from 'firebase/app';
 import 'firebase/database';
-import { WEATHER_CACHE_LENGTH_MINS } from '../../constants/weatherConstants';
 
 const WEATHER_API_KEY = process.env.WEATHER_API_KEY;
 
@@ -108,7 +108,7 @@ function fetchCachedForecast(todayDate, zip, callback) {
 
 function writeForecast(date, zip, fullForecast) {
   const fetchMoment = moment();
-  const expireMoment = fetchMoment.add(WEATHER_CACHE_LENGTH_MINS, 'minutes');
+  const expireMoment = fetchMoment.add(CACHE_LENGTH_MINS, 'minutes');
   firebase.database().ref(getForecastPath(zip, date)).set({
     forecast: fullForecast.toJS(),
     fetchMillis: fetchMoment.valueOf(),

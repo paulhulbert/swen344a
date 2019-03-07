@@ -1,6 +1,5 @@
 import React from 'react';
 import { Card, List, Header, Icon, Button } from 'semantic-ui-react'
-import PropTypes from 'prop-types';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import { STOCK_FIELD_NAMES } from '../../constants/stocksConstants';
 
@@ -79,4 +78,4 @@ export default function StocksCard({stockData}){
 
 StocksCard.propTypes = {
     stockData: ImmutablePropTypes.map.isRequired
-  }
+};

@@ -9,6 +9,7 @@ export const STOCK_FIELD_NAMES = {
     YEAR_HIGH : 'week52High',
     YEAR_LOW : 'week52Low',
     OPEN_PRICE : 'open',
+    CLOSE_PRICE: 'close',
 };
 
 export const DEFAULTS_STOCKS = List(['MSFT', 'AAPL', 'SNAP', 'TSLA', 'GOOG']);

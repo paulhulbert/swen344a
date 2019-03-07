@@ -9,6 +9,8 @@ import 'firebase/database';
 
 const BASE_URL = 'https://api.iextrading.com/1.0/stock';
 
+export const formatStockValue = value => `$${value}`;
+
 function processIndividualStockData(stock) {
     return stock.get('quote').filter((_, key) => {
         return STOCK_FIELDS_TO_KEEP.includes(key);

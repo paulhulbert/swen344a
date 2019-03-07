@@ -3,8 +3,8 @@ import { Map } from 'immutable';
 import LoadingState from '../common/LoadingState';
 import { getOneYearStockChartData } from '../../utils/stocks/stocksUtils';
 import StockChartSection from './StockChartSection';
-import '../../style/stocks/stocksPage.css';
 import { Container } from 'semantic-ui-react';
+import '../../style/stocks/stocksPage.css';
 
 export default class StocksPage extends PureComponent {
 

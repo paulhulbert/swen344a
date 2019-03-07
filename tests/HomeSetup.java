@@ -27,37 +27,31 @@ public class HomeSetup {
     driver.get("https://web-engineering-spring-2019.firebaseapp.com/");
     // Warning: verifyTextPresent may require manual changes
     try {
-      assertTrue(driver.findElement(By.cssSelector("BODY")).getText().matches("^[\\s\\S]*$"));
+      assertTrue(driver.findElement(By.cssSelector("BODY")).getText().matches("SÜT"));
     } catch (Error e) {
       verificationErrors.append(e.toString());
     }
     // Warning: verifyTextPresent may require manual changes
     try {
-      assertTrue(driver.findElement(By.cssSelector("BODY")).getText().matches("^[\\s\\S]*$"));
+      assertTrue(driver.findElement(By.cssSelector("BODY")).getText().matches("Calendar"));
     } catch (Error e) {
       verificationErrors.append(e.toString());
     }
     // Warning: verifyTextPresent may require manual changes
     try {
-      assertTrue(driver.findElement(By.cssSelector("BODY")).getText().matches("^[\\s\\S]*$"));
+      assertTrue(driver.findElement(By.cssSelector("BODY")).getText().matches("Stocks"));
     } catch (Error e) {
       verificationErrors.append(e.toString());
     }
     // Warning: verifyTextPresent may require manual changes
     try {
-      assertTrue(driver.findElement(By.cssSelector("BODY")).getText().matches("^[\\s\\S]*$"));
+      assertTrue(driver.findElement(By.cssSelector("BODY")).getText().matches("Twitter"));
     } catch (Error e) {
       verificationErrors.append(e.toString());
     }
     // Warning: verifyTextPresent may require manual changes
     try {
-      assertTrue(driver.findElement(By.cssSelector("BODY")).getText().matches("^[\\s\\S]*$"));
-    } catch (Error e) {
-      verificationErrors.append(e.toString());
-    }
-    // Warning: verifyTextPresent may require manual changes
-    try {
-      assertTrue(driver.findElement(By.cssSelector("BODY")).getText().matches("^[\\s\\S]*$"));
+      assertTrue(driver.findElement(By.cssSelector("BODY")).getText().matches("Weather"));
     } catch (Error e) {
       verificationErrors.append(e.toString());
     }

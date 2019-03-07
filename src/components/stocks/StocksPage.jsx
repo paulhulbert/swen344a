@@ -1,8 +1,10 @@
 import React, { PureComponent } from 'react';
-import { StocksChart } from './StocksChart';
 import { Map } from 'immutable';
 import LoadingState from '../common/LoadingState';
 import { getOneYearStockChartData } from '../../utils/stocks/stocksUtils';
+import StockChartSection from './StockChartSection';
+import '../../style/stocks/stocksPage.css';
+import { Container } from 'semantic-ui-react';
 
 export default class StocksPage extends PureComponent {
 
@@ -18,7 +20,7 @@ export default class StocksPage extends PureComponent {
   }
 
   componentDidMount() {
-    this.handleSelectTicker('GOOG');
+    this.handleSelectTicker('AAPL');
   }
 
   handleAddStockDataForTicker(ticker, stockData) {
@@ -43,12 +45,18 @@ export default class StocksPage extends PureComponent {
   }
 
   render() {
+    const { selectedTicker } = this.state;
     const stockChartData = this.state.chartDataByTicker.get(this.state.selectedTicker);
-    if (!stockChartData) {
+    if (!stockChartData || !selectedTicker) {
       return <LoadingState />
     }
     return (
-      <StocksChart stockTicker="AAPL" stockChartData={stockChartData}/>
+      <Container>
+        <StockChartSection 
+          ticker={selectedTicker}
+          stockChartData={stockChartData}
+        />
+      </Container>
     );
   }
 }

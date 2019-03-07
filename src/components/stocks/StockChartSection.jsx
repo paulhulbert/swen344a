@@ -35,9 +35,7 @@ export default class StockChartSection extends PureComponent {
       return <LoadingState />;
     }
     return (
-      <Segment.Group
-        className="stock-chart-segment"
-      >
+      <Segment.Group>
         <Segment>
           <ChartTypePicker
             activeChartType={this.state.activeChartType}

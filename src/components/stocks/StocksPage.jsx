@@ -6,7 +6,6 @@ import StockChartSection from './StockChartSection';
 import { Container, Grid } from 'semantic-ui-react';
 import StockTickerPicker from './StockTickerPicker';
 import { STOCK_FIELD_NAMES } from '../../constants/stocksConstants';
-import '../../style/stocks/stockspage.css';
 
 export default class StocksPage extends PureComponent {
 
@@ -66,7 +65,7 @@ export default class StocksPage extends PureComponent {
     }
     return (
       <Container>
-        <Grid columns={2}>
+        <Grid columns={2} stretched={true}>
           <Grid.Column width={2}>
             <StockTickerPicker
               selectedTicker={selectedTicker}

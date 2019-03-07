@@ -27,7 +27,6 @@ export default function StockTickerPicker({
       fluid={true}
       vertical={true}
       tabular={true}
-      className="stock-ticker-picker"
     >
       {renderTopStocks(selectedTicker, topStocks, handleSelectTicker)}
     </Menu>

@@ -9,7 +9,7 @@ import org.openqa.selenium.*;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.ui.Select;
 
-public class Calendar {
+public class MakingTweet {
   private WebDriver driver;
   private String baseUrl;
   private boolean acceptNextAlert = true;
@@ -23,14 +23,17 @@ public class Calendar {
   }
 
   @Test
-  public void testCalendar() throws Exception {
+  public void testMakingTweet() throws Exception {
     driver.get("https://web-engineering-spring-2019.firebaseapp.com/");
-    driver.findElement(By.linkText("Calendar")).click();
-    driver.findElement(By.xpath("(.//*[normalize-space(text()) and normalize-space(.)='Log Out'])[1]/following::span[1]")).click();
-    driver.findElement(By.xpath("(.//*[normalize-space(text()) and normalize-space(.)='Log Out'])[1]/following::span[2]")).click();
-    driver.findElement(By.xpath("(.//*[normalize-space(text()) and normalize-space(.)='month'])[1]/following::button[1]")).click();
-    driver.findElement(By.xpath("(.//*[normalize-space(text()) and normalize-space(.)='week'])[1]/following::button[1]")).click();
-    driver.findElement(By.xpath("(.//*[normalize-space(text()) and normalize-space(.)='Log Out'])[1]/following::button[3]")).click();
+    // ERROR: Caught exception [ERROR: Unsupported command [selectFrame | index=2 | ]]
+    driver.findElement(By.id("b")).click();
+    // ERROR: Caught exception [ERROR: Unsupported command [selectWindow | win_ser_1 | ]]
+    driver.findElement(By.id("status")).click();
+    driver.findElement(By.id("status")).clear();
+    driver.findElement(By.id("status")).sendKeys("SÜT Automated Example");
+    driver.findElement(By.xpath("(.//*[normalize-space(text()) and normalize-space(.)='SÜT'])[1]/following::input[1]")).click();
+    driver.close();
+    // ERROR: Caught exception [ERROR: Unsupported command [selectWindow | win_ser_local | ]]
   }
 
   @After

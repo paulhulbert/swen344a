@@ -30,11 +30,13 @@ public class Login {
     // ERROR: Caught exception [ERROR: Unsupported command [selectWindow | win_ser_local | ]]
     // ERROR: Caught exception [ERROR: Unsupported command [selectWindow | win_ser_1 | ]]
     driver.findElement(By.id("username_or_email")).clear();
-    driver.findElement(By.id("username_or_email")).sendKeys("pxh8242");
+    String twitterUsername = config.getString("username");
+    driver.findElement(By.id("username_or_email")).sendKeys(twitterUsername);
     // ERROR: Caught exception [ERROR: Unsupported command [selectWindow | win_ser_local | ]]
     // ERROR: Caught exception [ERROR: Unsupported command [selectWindow | win_ser_1 | ]]
+    String twitterPassword = config.template.getString("password");
     driver.findElement(By.id("password")).clear();
-    driver.findElement(By.id("password")).sendKeys("\\&!arK;+jS&97s~j");
+    driver.findElement(By.id("password")).sendKeys(twitterPassword);
     driver.findElement(By.id("allow")).click();
     driver.close();
     // ERROR: Caught exception [ERROR: Unsupported command [selectWindow | win_ser_local | ]]

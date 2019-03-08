@@ -2,6 +2,7 @@ import React, { PureComponent } from 'react';
 import { Segment } from 'semantic-ui-react';
 import PropTypes from 'prop-types';
 import ImmutablePropTypes from 'react-immutable-proptypes';
+import { List } from 'immutable';
 import { PRIMARY_COLOR } from '../../constants/colors';
 import StocksChart from './StocksChart';
 import StockInformation from './StockInformation';
@@ -57,8 +58,12 @@ export default class StockChartSection extends PureComponent {
   }
 }
 
+StockChartSection.defaultProps = {
+  stockChartData: List(),
+};
+
 StockChartSection.propTypes = {
-  stockChartData: ImmutablePropTypes.list.isRequired,
+  stockChartData: ImmutablePropTypes.list,
   ticker: PropTypes.string.isRequired,
   selectedStock: ImmutablePropTypes.map.isRequired,
 };

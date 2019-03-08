@@ -57,6 +57,9 @@ function formatOneYearDataToFiveDay(oneYearData) {
 }
 
 export function formatOneYearDataToChartType(oneYearData, chartType) {
+  if (!oneYearData.size) {
+    return oneYearData;
+  }
   const lastRecordedDay = moment(oneYearData.last().get('dayMoment')).startOf('day');
   switch (chartType) {
     case CHART_TYPES.YEAR_TO_DATE:

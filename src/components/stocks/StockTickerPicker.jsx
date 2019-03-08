@@ -5,6 +5,11 @@ import ImmutablePropTypes from 'react-immutable-proptypes';
 import { STOCK_FIELD_NAMES } from '../../constants/stocksConstants';
 
 export default class StockTickerPicker extends PureComponent {
+  constructor() {
+    super();
+    this.renderStockTicker = this.renderStockTicker.bind(this);
+  }
+
   renderStockTicker(stock) {
     const ticker = stock.get(STOCK_FIELD_NAMES.SYMBOL);
     return (

@@ -60,7 +60,7 @@ class MenuBar extends PureComponent {
 }
 
 MenuBar.propTypes = {
-  location: PropTypes.object.shape({
+  location: PropTypes.shape({
     pathname: PropTypes.string,
   }).isRequired,
 };

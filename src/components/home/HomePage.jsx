@@ -8,7 +8,7 @@ import StocksSection from './stocks/StocksSection';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 
 export default function HomePage({
- providerData,
+  authProviderData,
 }) {
   return (
     <Container>
@@ -20,8 +20,8 @@ export default function HomePage({
           <HomePageSegment
             title="Twitter"
           >
-            <Twitter
-                providerData={providerData}
+            <TwitterSection
+              authProviderData={authProviderData}
             />
           </HomePageSegment>
         </Grid.Column>
@@ -42,4 +42,8 @@ export default function HomePage({
       </Grid>
     </Container>
   )
+}
+
+HomePage.propTypes = {
+  authProviderData: ImmutablePropTypes.map.isRequired,
 }

@@ -38,7 +38,9 @@
     "ttf-loader": "^1.0.2",
     "webpack": "^4.29.4",
     "webpack-cli": "^3.2.3",
-    "webpack-dev-server": "^3.1.14"
+    "webpack-dev-server": "^3.1.14",
+    "husky": "^1.1.2",
+    "lint-staged": "^7.3.0"
   },
   "dependencies": {
     "@babel/plugin-proposal-class-properties": "^7.3.3",
@@ -57,5 +59,22 @@
     "react-twitter-embed": "^2.0.4",
     "semantic-ui-css": "^2.4.1",
     "semantic-ui-react": "^0.85.0"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged",
+      "pre-push": "npm run test"
+    }
+  },
+  "lint-staged": {
+    "linters": {
+      "*.{js,jsx}": [
+        "eslint --fix",
+        "git add"
+      ]
+    },
+    "ignore": [
+      "webpack.config.js"
+    ]
   }
 }

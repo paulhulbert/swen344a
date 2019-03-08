@@ -6,8 +6,8 @@
   "scripts": {
     "start": "webpack-dev-server --config ./webpack.config.js --mode development -d",
     "build": "webpack --mode production",
-    "lint:all": "eslint --ext .js --ext .jsx src test",
-    "lint:all:fix": "eslint --ext .js --ext .jsx src test --fix"
+    "lint:all": "eslint --ext .js --ext .jsx src",
+    "lint:all:fix": "eslint --ext .js --ext .jsx src --fix"
   },
   "repository": {
     "type": "git",

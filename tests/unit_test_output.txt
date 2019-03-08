@@ -1,0 +1,142 @@
+[info] Playing test case SWEN-344 Katalon / Login2
+[info] Time: Thu Mar 07 2019 23:54:53 GMT-0500 (Eastern Standard Time) Timestamp: 1552020893822
+[info] OS: Windows Version: 10
+[info] Browser: Chrome Version: 72.0
+[info] If the test cannot start, please refresh the active browser tab
+[info] Executing: | open | https://web-engineering-spring-2019.firebaseapp.com/ | |
+[info] Executing: | click | xpath=(.//*[normalize-space(text()) and normalize-space(.)='Please log in with Twitter to access SÜT'])[1]/following::button[1] | |
+[info] Executing: | selectWindow | win_ser_1 | |
+[info] Expand variable 'win_ser_1' into 'win_ser_1'
+[info] Executing: | selectWindow | win_ser_local | |
+[info] Expand variable 'win_ser_local' into 'win_ser_local'
+[info] Executing: | selectWindow | win_ser_1 | |
+[info] Expand variable 'win_ser_1' into 'win_ser_1'
+[info] Executing: | type | id=username_or_email | pxh8242 |
+[info] Wait until the element is found
+[info] Executing: | type | id=username_or_email | pxh8242 |
+[info] Executing: | selectWindow | win_ser_local | |
+[info] Expand variable 'win_ser_local' into 'win_ser_local'
+[info] Executing: | selectWindow | win_ser_1 | |
+[info] Expand variable 'win_ser_1' into 'win_ser_1'
+[info] Executing: | type | id=password | 7p!J3!M,x&}]hF{* |
+[info] Executing: | click | id=allow | |
+[info] Executing: | waitForPageToLoad | | |
+[info] Executing: | selectWindow | win_ser_local | |
+[info] Expand variable 'win_ser_local' into 'win_ser_local'
+[info] Time: Thu Mar 07 2019 23:55:02 GMT-0500 (Eastern Standard Time) Timestamp: 1552020902077
+[info] Test case passed
+[info] Playing test case SWEN-344 Katalon / Home Setup
+[info] Time: Thu Mar 07 2019 23:55:02 GMT-0500 (Eastern Standard Time) Timestamp: 1552020902867
+[info] OS: Windows Version: 10
+[info] Browser: Chrome Version: 72.0
+[info] If the test cannot start, please refresh the active browser tab
+[info] Executing: | waitForPageToLoad | | |
+[info] Executing: | open | https://web-engineering-spring-2019.firebaseapp.com/ | |
+[info] Executing: | verifyTextPresent | | SÜT |
+[info] Executing: | verifyTextPresent | | Calendar |
+[info] Executing: | verifyTextPresent | | Stocks |
+[info] Executing: | verifyTextPresent | | Twitter |
+[info] Executing: | verifyTextPresent | | Weather |
+[info] Executing: | verifyTextPresent | | Stocks |
+[info] Time: Thu Mar 07 2019 23:55:03 GMT-0500 (Eastern Standard Time) Timestamp: 1552020903865
+[info] Test case passed
+[info] Playing test case SWEN-344 Katalon / Embed Tweet
+[info] Time: Thu Mar 07 2019 23:55:04 GMT-0500 (Eastern Standard Time) Timestamp: 1552020904381
+[info] OS: Windows Version: 10
+[info] Browser: Chrome Version: 72.0
+[info] If the test cannot start, please refresh the active browser tab
+[info] Executing: | open | https://web-engineering-spring-2019.firebaseapp.com/ | |
+[info] Executing: | selectFrame | index=2 | |
+[info] Expand variable 'index=2' into 'index=2'
+[info] Executing: | click | link=Embed | |
+[info] Executing: | selectWindow | win_ser_1 | |
+[info] Expand variable 'win_ser_1' into 'win_ser_1'
+[info] Time: Thu Mar 07 2019 23:55:05 GMT-0500 (Eastern Standard Time) Timestamp: 1552020905996
+[info] Test case passed
+[info] Playing test case SWEN-344 Katalon / Current Weather
+[info] Time: Thu Mar 07 2019 23:55:06 GMT-0500 (Eastern Standard Time) Timestamp: 1552020906896
+[info] OS: Windows Version: 10
+[info] Browser: Chrome Version: 72.0
+[info] If the test cannot start, please refresh the active browser tab
+[info] Executing: | open | https://web-engineering-spring-2019.firebaseapp.com/ | |
+[info] Executing: | verifyTextPresent | | Weather |
+[info] Executing: | verifyTextPresent | | today-weather-icon |
+[info] Executing: | verifyTextPresent | | city-label |
+[info] Time: Thu Mar 07 2019 23:55:07 GMT-0500 (Eastern Standard Time) Timestamp: 1552020907313
+[info] Test case passed
+[info] Playing test case SWEN-344 Katalon / Current Stocks
+[info] Time: Thu Mar 07 2019 23:55:07 GMT-0500 (Eastern Standard Time) Timestamp: 1552020907907
+[info] OS: Windows Version: 10
+[info] Browser: Chrome Version: 72.0
+[info] If the test cannot start, please refresh the active browser tab
+[info] Executing: | open | https://web-engineering-spring-2019.firebaseapp.com/ | |
+[info] Executing: | verifyTextPresent | | Stocks |
+[info] Executing: | verifyTextPresent | | stock-card |
+[info] Time: Thu Mar 07 2019 23:55:08 GMT-0500 (Eastern Standard Time) Timestamp: 1552020908309
+[info] Test case passed
+[info] Playing test case SWEN-344 Katalon / Calendar
+[info] Time: Thu Mar 07 2019 23:55:08 GMT-0500 (Eastern Standard Time) Timestamp: 1552020908920
+[info] OS: Windows Version: 10
+[info] Browser: Chrome Version: 72.0
+[info] If the test cannot start, please refresh the active browser tab
+[info] Executing: | open | https://web-engineering-spring-2019.firebaseapp.com/ | |
+[info] Executing: | click | link=Calendar | |
+[info] Executing: | click | xpath=(.//*[normalize-space(text()) and normalize-space(.)='Log Out'])[1]/following::span[1] | |
+[info] Executing: | click | xpath=(.//*[normalize-space(text()) and normalize-space(.)='Log Out'])[1]/following::span[2] | |
+[info] Executing: | click | xpath=(.//*[normalize-space(text()) and normalize-space(.)='month'])[1]/following::button[1] | |
+[info] Executing: | click | xpath=(.//*[normalize-space(text()) and normalize-space(.)='week'])[1]/following::button[1] | |
+[info] Executing: | click | xpath=(.//*[normalize-space(text()) and normalize-space(.)='Log Out'])[1]/following::button[3] | |
+[info] Time: Thu Mar 07 2019 23:55:09 GMT-0500 (Eastern Standard Time) Timestamp: 1552020909833
+[info] Test case passed
+[info] Playing test case SWEN-344 Katalon / Stock Ticker
+[info] Time: Thu Mar 07 2019 23:55:10 GMT-0500 (Eastern Standard Time) Timestamp: 1552020910436
+[info] OS: Windows Version: 10
+[info] Browser: Chrome Version: 72.0
+[info] If the test cannot start, please refresh the active browser tab
+[info] Executing: | open | https://web-engineering-spring-2019.firebaseapp.com/ | |
+[info] Executing: | click | link=Stocks | |
+[info] Executing: | click | link=MSFT | |
+[info] Wait until the element is found
+[info] Time: Thu Mar 07 2019 23:55:12 GMT-0500 (Eastern Standard Time) Timestamp: 1552020912072
+[info] Test case passed
+[info] Playing test case SWEN-344 Katalon / Viewing Twitter
+[info] Time: Thu Mar 07 2019 23:55:12 GMT-0500 (Eastern Standard Time) Timestamp: 1552020912949
+[info] OS: Windows Version: 10
+[info] Browser: Chrome Version: 72.0
+[info] If the test cannot start, please refresh the active browser tab
+[info] Executing: | open | https://web-engineering-spring-2019.firebaseapp.com/ | |
+[info] Executing: | selectFrame | index=1 | |
+[info] Expand variable 'index=1' into 'index=1'
+[info] Executing: | click | link=View on Twitter | |
+[info] Executing: | selectWindow | win_ser_1 | |
+[info] Expand variable 'win_ser_1' into 'win_ser_1'
+[info] Time: Thu Mar 07 2019 23:55:14 GMT-0500 (Eastern Standard Time) Timestamp: 1552020914592
+[info] Test case passed
+[info] Playing test case SWEN-344 Katalon / Logout
+[info] Time: Thu Mar 07 2019 23:55:15 GMT-0500 (Eastern Standard Time) Timestamp: 1552020915460
+[info] OS: Windows Version: 10
+[info] Browser: Chrome Version: 72.0
+[info] If the test cannot start, please refresh the active browser tab
+[info] Executing: | open | https://web-engineering-spring-2019.firebaseapp.com/ | |
+[info] Executing: | click | xpath=(.//*[normalize-space(text()) and normalize-space(.)='Stocks'])[1]/following::button[1] | |
+[info] Time: Thu Mar 07 2019 23:55:17 GMT-0500 (Eastern Standard Time) Timestamp: 1552020917123
+[info] Test case passed
+[info] Playing test case SWEN-344 Katalon / Making Tweet
+[info] Time: Thu Mar 07 2019 23:55:17 GMT-0500 (Eastern Standard Time) Timestamp: 1552020917973
+[info] OS: Windows Version: 10
+[info] Browser: Chrome Version: 72.0
+[info] If the test cannot start, please refresh the active browser tab
+[info] Executing: | open | https://web-engineering-spring-2019.firebaseapp.com/ | |
+[info] Executing: | waitForPageToLoad | | |
+[info] Executing: | selectFrame | index=2 | |
+[info] Expand variable 'index=2' into 'index=2'
+[info] Executing: | click | xpath=(.//*[normalize-space(text()) and normalize-space(.)='Tweet'])[1]/preceding::i[1] | |
+[info] Executing: | selectWindow | win_ser_1 | |
+[info] Expand variable 'win_ser_1' into 'win_ser_1'
+[info] Executing: | click | id=status | |
+[info] Executing: | type | id=status | SÜT Automated Example |
+[info] Executing: | click | xpath=(.//*[normalize-space(text()) and normalize-space(.)='SÜT'])[1]/following::input[1] | |
+[info] Executing: | selectWindow | win_ser_local | |
+[info] Expand variable 'win_ser_local' into 'win_ser_local'
+[info] Time: Thu Mar 07 2019 23:55:20 GMT-0500 (Eastern Standard Time) Timestamp: 1552020920068
+[info] Test case passed

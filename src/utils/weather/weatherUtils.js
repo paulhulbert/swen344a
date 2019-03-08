@@ -1,19 +1,20 @@
 import { fromJS, Map, List } from 'immutable';
 import moment from 'moment';
+import firebase from 'firebase/app';
 import { DATE_FORMAT } from '../../constants/formats';
 import { CACHE_LENGTH_MINS } from '../../constants/cacheConstants';
-import firebase from 'firebase/app';
 import 'firebase/database';
 
-const WEATHER_API_KEY = process.env.WEATHER_API_KEY;
+const { WEATHER_API_KEY } = process.env;
 
 if (!WEATHER_API_KEY) {
+  // eslint-disable-next-line no-console
   console.warn('No weather API key detected');
 }
 
 // API Docs: https://openweathermap.org/api
-const BASE_URL = 'https://api.openweathermap.org/data/2.5'
-const DEFAULT_ZIP = 14623 //Henrietta, NY
+const BASE_URL = 'https://api.openweathermap.org/data/2.5';
+const DEFAULT_ZIP = 14623; // Henrietta, NY
 
 function getForecastPath(zip, date) {
   return `forecast/${zip}/${date}`;
@@ -29,8 +30,8 @@ function forecastToMap(forecast, ignoreCurrentTemp, city, date) {
     currentTemp: ignoreCurrentTemp ? null : Math.round(dailyTemperatures.get('temp')),
     highTemp: Math.round(dailyTemperatures.get('temp_max')),
     lowTemp: Math.round(dailyTemperatures.get('temp_min')),
-    location: city ? city : forecast.get('name'),
-    date: date ? date : moment().format(DATE_FORMAT),
+    location: city || forecast.get('name'),
+    date: date || moment().format(DATE_FORMAT),
     weatherDescription: {
       mainDescription: forecast.get('weather').first().get('main'),
       detailedDescription: capitalizeWord(forecast.get('weather').first().get('description')),
@@ -58,7 +59,7 @@ function threeHourToDaily(threeHourForecast) {
     if (!existingDayWeather) {
       return resultingForecast.set(forecastKey, threeHourWeather);
     }
-    let updatedDayWeather = existingDayWeather;
+    const updatedDayWeather = existingDayWeather;
     const threeHourLow = threeHourWeather.get('lowTemp');
     const threeHourHigh = threeHourWeather.get('highTemp');
     if (threeHourLow < existingDayWeather.get('lowTemp')) {
@@ -79,21 +80,26 @@ function fetchFutureForecastForZip(zip = DEFAULT_ZIP, callback) {
     .then(callback);
 }
 
+function writeForecast(date, zip, fullForecast) {
+  const fetchMoment = moment();
+  const expireMoment = fetchMoment.add(CACHE_LENGTH_MINS, 'minutes');
+  firebase.database().ref(getForecastPath(zip, date)).set({
+    forecast: fullForecast.toJS(),
+    fetchMillis: fetchMoment.valueOf(),
+    expireMillis: expireMoment.valueOf(),
+  });
+}
+
 function fetchFullFiveDayForecastForZip(todayDate, zip = DEFAULT_ZIP, callback) {
   fetchCurrentWeatherForZip(zip, (currentWeather) => {
     let fullForecast = List([currentWeather]);
     fetchFutureForecastForZip(zip, (futureForecast) => {
       fullForecast = fullForecast.concat(futureForecast);
       // cache forecast for future use, and to avoid overloading API
-      writeForecast(todayDate, zip, fullForecast)
+      writeForecast(todayDate, zip, fullForecast);
       callback(fullForecast);
-    })
+    });
   });
-}
-
-export function getFullForecastForZip(zip = DEFAULT_ZIP, callback) {
-  const todayDate = moment().format(DATE_FORMAT);
-  fetchCachedForecast(todayDate, zip, callback);
 }
 
 function fetchCachedForecast(todayDate, zip, callback) {
@@ -102,16 +108,12 @@ function fetchCachedForecast(todayDate, zip, callback) {
     if (!dayForecast || moment() > dayForecast.get('expireMillis')) {
       return fetchFullFiveDayForecastForZip(todayDate, zip, callback);
     }
-    callback(dayForecast.get('forecast'));
+    return callback(dayForecast.get('forecast'));
   });
 }
 
-function writeForecast(date, zip, fullForecast) {
-  const fetchMoment = moment();
-  const expireMoment = fetchMoment.add(CACHE_LENGTH_MINS, 'minutes');
-  firebase.database().ref(getForecastPath(zip, date)).set({
-    forecast: fullForecast.toJS(),
-    fetchMillis: fetchMoment.valueOf(),
-    expireMillis: expireMoment.valueOf(), 
-  });
+// eslint-disable-next-line import/prefer-default-export
+export function getFullForecastForZip(zip = DEFAULT_ZIP, callback) {
+  const todayDate = moment().format(DATE_FORMAT);
+  fetchCachedForecast(todayDate, zip, callback);
 }

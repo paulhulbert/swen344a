@@ -1,5 +1,7 @@
 import React from 'react';
-import { Card, List, Header, Icon } from 'semantic-ui-react'
+import {
+  Card, List, Header, Icon,
+} from 'semantic-ui-react';
 import PropTypes from 'prop-types';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 
@@ -25,35 +27,35 @@ function getWeatherIconName(weatherMainDescription) {
 function renderTodayWeatherIcon(weatherDescription) {
   const weatherMainDescription = weatherDescription.get('mainDescription');
   return (
-    <Header as='h4' icon={true} className="today-weather-icon">
+    <Header as="h4" icon className="today-weather-icon">
       <Icon name={getWeatherIconName(weatherMainDescription)} />
       {weatherDescription.get('detailedDescription') || weatherMainDescription}
     </Header>
-  )
+  );
 }
 
 function renderDailyHighAndLow(high, low) {
   return (
     <List
-      horizontal={true}
+      horizontal
     >
       <List.Item>
         <Header
-          sub={true}
+          sub
         >
           {`${high}°`}
         </Header>
       </List.Item>
       <List.Item>
         <Header
-          color='grey'
-          sub={true}
+          color="grey"
+          sub
         >
           {`${low}°`}
         </Header>
       </List.Item>
     </List>
-  )
+  );
 }
 
 function renderTodayWeather(weather, dayLabel) {
@@ -77,14 +79,14 @@ function renderTodayWeather(weather, dayLabel) {
       </Header>
       {renderDailyHighAndLow(weather.get('highTemp'), weather.get('lowTemp'))}
     </div>
-  )
+  );
 }
 
 function renderCardHeader(dayLabel, weatherMainDescription) {
   return (
     <List
-      horizontal={true}
-      relaxed={true}
+      horizontal
+      relaxed
     >
       <List.Item>
         {dayLabel}
@@ -93,7 +95,7 @@ function renderCardHeader(dayLabel, weatherMainDescription) {
         <Icon name={getWeatherIconName(weatherMainDescription)} />
       </List.Item>
     </List>
-  )
+  );
 }
 
 export default function WeatherCard({
@@ -108,7 +110,7 @@ export default function WeatherCard({
   const weatherMainDescription = weatherDescription.get('mainDescription');
   return (
     <Card
-      fluid={true}
+      fluid
     >
       <Card.Content>
         <Card.Header>
@@ -123,8 +125,12 @@ export default function WeatherCard({
   );
 }
 
+WeatherCard.defaultProps = {
+  isToday: false,
+};
+
 WeatherCard.propTypes = {
   weather: ImmutablePropTypes.map.isRequired,
   dayLabel: PropTypes.string.isRequired,
   isToday: PropTypes.bool,
-}
+};

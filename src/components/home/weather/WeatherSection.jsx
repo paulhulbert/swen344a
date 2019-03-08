@@ -1,22 +1,21 @@
 import React, { PureComponent } from 'react';
+import { List } from 'immutable';
+import moment from 'moment';
 import WeatherCard from './WeatherCard';
 import {
   getFullForecastForZip,
 } from '../../../utils/weather/weatherUtils';
-import { List } from 'immutable';
-import moment from 'moment';
 import { DATE_FORMAT } from '../../../constants/formats';
 import '../../../style/home/weather.css';
 import LoadingState from '../../common/LoadingState';
 
 export default class WeatherSection extends PureComponent {
-
   constructor() {
     super();
     this.state = {
       weather: List(),
       fetchingWeather: true,
-    }
+    };
     this.handleUpdateWeather = this.handleUpdateWeather.bind(this);
     this.renderWeatherItem = this.renderWeatherItem.bind(this);
   }

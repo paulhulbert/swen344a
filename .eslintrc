@@ -1,4 +1,12 @@
 {
   parser: "babel-eslint",
   "extends": "airbnb",
+  "rules": {
+    "class-methods-use-this": 0,
+    "react/destructuring-assignment": 0,
+  },
+  "env": {
+    "browser": true,
+    "node": true,
+  }
 }

@@ -1,11 +1,11 @@
 import React from 'react';
-import WeatherSection from './weather/WeatherSection'
-import '../../style/home/homepage.css'
-import { HomePageSegment } from './HomePageSegment';
-import { Grid, Container } from 'semantic-ui-react';
-import TwitterSection from "./twitter/TwitterSection";
-import StocksSection from './stocks/StocksSection';
 import ImmutablePropTypes from 'react-immutable-proptypes';
+import { Grid, Container } from 'semantic-ui-react';
+import WeatherSection from './weather/WeatherSection';
+import HomePageSegment from './HomePageSegment';
+import TwitterSection from './twitter/TwitterSection';
+import StocksSection from './stocks/StocksSection';
+import '../../style/home/homepage.css';
 
 export default function HomePage({
   authProviderData,
@@ -14,7 +14,7 @@ export default function HomePage({
     <Container>
       <Grid
         columns={3}
-        stretched={true}
+        stretched
       >
         <Grid.Column>
           <HomePageSegment
@@ -36,14 +36,14 @@ export default function HomePage({
           <HomePageSegment
             title="Stocks"
           >
-            <StocksSection/>
+            <StocksSection />
           </HomePageSegment>
         </Grid.Column>
       </Grid>
     </Container>
-  )
+  );
 }
 
 HomePage.propTypes = {
   authProviderData: ImmutablePropTypes.map.isRequired,
-}
+};

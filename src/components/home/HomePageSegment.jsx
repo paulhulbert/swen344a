@@ -1,9 +1,9 @@
 import React from 'react';
-import { PRIMARY_COLOR } from '../../constants/colors';
-import { Segment } from 'semantic-ui-react'
+import { Segment } from 'semantic-ui-react';
 import PropTypes from 'prop-types';
+import { PRIMARY_COLOR } from '../../constants/colors';
 
-export function HomePageSegment({
+export default function HomePageSegment({
   title,
   children,
 }) {
@@ -12,7 +12,7 @@ export function HomePageSegment({
       className="home-segment"
     >
       <Segment
-        inverted={true}
+        inverted
         color={PRIMARY_COLOR}
         textAlign="center"
       >
@@ -27,5 +27,5 @@ export function HomePageSegment({
 
 HomePageSegment.propTypes = {
   title: PropTypes.string.isRequired,
-  children: PropTypes.node,
-}
+  children: PropTypes.node.isRequired,
+};

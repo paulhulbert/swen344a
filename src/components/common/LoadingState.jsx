@@ -5,7 +5,7 @@ import {
 
 export default function LoadingState() {
   return (
-    <Loader inverted={true}>
+    <Loader inverted>
       Loading
     </Loader>
   );

@@ -2,7 +2,7 @@ import React from 'react';
 import {
   TwitterShareButton,
   TwitterTimelineEmbed,
-} from "react-twitter-embed";
+} from 'react-twitter-embed';
 import { Grid } from 'semantic-ui-react';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import LoadingState from '../../common/LoadingState';
@@ -13,13 +13,13 @@ export default function TwitterSection({
   authProviderData,
 }) {
   if (!authProviderData || !authProviderData.size) {
-    return <LoadingState />
+    return <LoadingState />;
   }
   return (
     <Grid
-      centered={true}
+      centered
       columns={1}
-      stretched={true}
+      stretched
       padded="vertically"
     >
       <Grid.Row>
@@ -35,14 +35,14 @@ export default function TwitterSection({
         <TwitterShareButton
           url={process.env.AUTH_DOMAIN}
           options={{
-            text: DEFAULT_TWITTER_TEXT
+            text: DEFAULT_TWITTER_TEXT,
           }}
         />
       </Grid.Row>
     </Grid>
-  )
+  );
 }
 
 TwitterSection.propTypes = {
-  authProviderData: ImmutablePropTypes.map,
-}
+  authProviderData: ImmutablePropTypes.map.isRequired,
+};

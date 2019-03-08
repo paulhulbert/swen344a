@@ -1,19 +1,18 @@
 import React, { PureComponent } from 'react';
 import {
   Menu,
-  Header,
 } from 'semantic-ui-react';
-import { PRIMARY_COLOR } from '../../constants/colors';
 import {
   withRouter,
   Link,
 } from 'react-router-dom';
+import PropTypes from 'prop-types';
+import { PRIMARY_COLOR } from '../../constants/colors';
 import {
   INDEX_PAGE_ROUTE,
   CALENDAR_PAGE_ROUTE,
   STOCKS_PAGE_ROUTE,
 } from '../../constants/routes';
-import PropTypes from 'prop-types';
 import LogOutButton from '../login/LogOutButton';
 
 class MenuBar extends PureComponent {
@@ -29,7 +28,7 @@ class MenuBar extends PureComponent {
           {name}
         </Link>
       </Menu.Item>
-    )
+    );
   }
 
   renderLogOutButton() {
@@ -37,7 +36,7 @@ class MenuBar extends PureComponent {
       <Menu.Item>
         <LogOutButton />
       </Menu.Item>
-    )
+    );
   }
 
   render() {
@@ -45,13 +44,13 @@ class MenuBar extends PureComponent {
       <Menu
         color={PRIMARY_COLOR}
         fixed="top"
-        inverted={true}
+        inverted
       >
         {this.renderMenuItem('SÜT', INDEX_PAGE_ROUTE)}
         {this.renderMenuItem('Calendar', CALENDAR_PAGE_ROUTE)}
         {this.renderMenuItem('Stocks', STOCKS_PAGE_ROUTE)}
         <Menu.Menu
-          position='right'
+          position="right"
         >
           {this.renderLogOutButton()}
         </Menu.Menu>
@@ -61,7 +60,9 @@ class MenuBar extends PureComponent {
 }
 
 MenuBar.propTypes = {
-  location: PropTypes.object.isRequired,
-}
+  location: PropTypes.object.shape({
+    pathname: PropTypes.string,
+  }).isRequired,
+};
 
 export default withRouter(MenuBar);

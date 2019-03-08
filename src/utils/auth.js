@@ -1,5 +1,5 @@
 import firebase from 'firebase/app';
-import 'firebase/auth'
+import 'firebase/auth';
 
 export const FIREBASE_AUTH_INSTANCE = firebase.auth;
 

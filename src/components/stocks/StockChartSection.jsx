@@ -1,7 +1,9 @@
-import React, { PureComponent } from 'react'
+import React, { PureComponent } from 'react';
 import { Segment } from 'semantic-ui-react';
+import PropTypes from 'prop-types';
+import ImmutablePropTypes from 'react-immutable-proptypes';
 import { PRIMARY_COLOR } from '../../constants/colors';
-import { StocksChart } from './StocksChart';
+import StocksChart from './StocksChart';
 import StockInformation from './StockInformation';
 import ChartTypePicker from './ChartTypePicker';
 import { formatOneYearDataToChartType } from '../../utils/stocks/stocksUtils';
@@ -9,9 +11,8 @@ import { CHART_TYPES } from '../../constants/stockChartConstants';
 import LoadingState from '../common/LoadingState';
 
 export default class StockChartSection extends PureComponent {
-
   constructor() {
-    super()
+    super();
     this.state = {
       activeChartType: CHART_TYPES.FIVE_DAY,
     };
@@ -19,14 +20,14 @@ export default class StockChartSection extends PureComponent {
     this.getChartData = this.getChartData.bind(this);
   }
 
-  handleSelectChartType(chartType) {
-    this.setState({
-      activeChartType: chartType
-    });
-  }
-
   getChartData() {
     return formatOneYearDataToChartType(this.props.stockChartData, this.state.activeChartType);
+  }
+
+  handleSelectChartType(chartType) {
+    this.setState({
+      activeChartType: chartType,
+    });
   }
 
   render() {
@@ -44,7 +45,7 @@ export default class StockChartSection extends PureComponent {
           <StocksChart stockTicker={ticker} stockChartData={this.getChartData()} />
         </Segment>
         <Segment
-          inverted={true}
+          inverted
           color={PRIMARY_COLOR}
         >
           <StockInformation
@@ -52,6 +53,12 @@ export default class StockChartSection extends PureComponent {
           />
         </Segment>
       </Segment.Group>
-    )
+    );
   }
 }
+
+StockChartSection.propTypes = {
+  stockChartData: ImmutablePropTypes.list.isRequired,
+  ticker: PropTypes.string.isRequired,
+  selectedStock: ImmutablePropTypes.map.isRequired,
+};

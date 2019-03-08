@@ -11,15 +11,20 @@ export default function LoginButton({
     <Button
       disabled={loggedIn || loggingIn}
       onClick={attemptLogin}
-      primary={true}
+      primary
     >
       Log In
     </Button>
-  )
+  );
 }
+
+LoginButton.defaultProps = {
+  loggedIn: false,
+  loggingIn: false,
+};
 
 LoginButton.propTypes = {
   loggedIn: PropTypes.bool,
   loggingIn: PropTypes.bool,
   attemptLogin: PropTypes.func.isRequired,
-}
+};

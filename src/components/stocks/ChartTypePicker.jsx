@@ -1,6 +1,7 @@
 import React, { PureComponent } from 'react';
 import { Menu } from 'semantic-ui-react';
 import { fromJS } from 'immutable';
+import PropTypes from 'prop-types';
 import { CHART_TYPES } from '../../constants/stockChartConstants';
 
 const CHART_TYPE_LABELS = fromJS([
@@ -24,10 +25,9 @@ const CHART_TYPE_LABELS = fromJS([
     label: '1 year',
     value: CHART_TYPES.ONE_YEAR,
   },
-])
+]);
 
 export default class ChartTypePicker extends PureComponent {
-
   constructor() {
     super();
     this.renderChartType = this.renderChartType.bind(this);
@@ -42,7 +42,7 @@ export default class ChartTypePicker extends PureComponent {
         active={this.props.activeChartType === value}
         onClick={() => this.props.handleClickChartType(value)}
       />
-    ) 
+    );
   }
 
   renderChartTypes() {
@@ -52,8 +52,8 @@ export default class ChartTypePicker extends PureComponent {
   render() {
     return (
       <Menu
-        pointing={true}
-        secondary={true}
+        pointing
+        secondary
       >
         <Menu.Menu
           position="right"
@@ -61,7 +61,11 @@ export default class ChartTypePicker extends PureComponent {
           {this.renderChartTypes()}
         </Menu.Menu>
       </Menu>
-    )
+    );
   }
-
 }
+
+ChartTypePicker.propTypes = {
+  activeChartType: PropTypes.string.isRequired,
+  handleClickChartType: PropTypes.func.isRequired,
+};

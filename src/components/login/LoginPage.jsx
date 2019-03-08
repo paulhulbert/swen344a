@@ -1,15 +1,14 @@
 import React, { PureComponent } from 'react';
+import { Redirect } from 'react-router-dom';
+import { Header, Icon, Grid } from 'semantic-ui-react';
 import LoginButton from './LoginButton';
 import { INDEX_PAGE_ROUTE } from '../../constants/routes';
-import { Redirect } from 'react-router-dom';
 import {
   FIREBASE_AUTH_INSTANCE,
   OAUTH_PROVIDER,
 } from '../../utils/auth';
-import { Header, Icon, Grid } from 'semantic-ui-react'
 
 export default class LoginPage extends PureComponent {
-
   constructor() {
     super();
     this.handleAttemptLogIn = this.handleAttemptLogIn.bind(this);
@@ -17,12 +16,24 @@ export default class LoginPage extends PureComponent {
     this.state = {
       loggedIn: false,
       loggingIn: false,
+    };
+  }
+
+  componentDidMount() {
+    this.unsubscribe = FIREBASE_AUTH_INSTANCE().onAuthStateChanged((user) => {
+      this.handleUpdateUserLoggedIn(!!user);
+    });
+  }
+
+  componentWillUnmount() {
+    if (this.unsubscribe) {
+      this.unsubscribe();
     }
   }
 
   handleUpdateUserLoggedIn(loggedIn) {
     this.setState({
-      loggedIn: loggedIn,
+      loggedIn,
       loggingIn: false,
     });
   }
@@ -30,7 +41,7 @@ export default class LoginPage extends PureComponent {
   handleAttemptLogIn() {
     this.setState({
       loggingIn: true,
-    })
+    });
     FIREBASE_AUTH_INSTANCE().signInWithPopup(OAUTH_PROVIDER).then(() => {
       this.handleUpdateUserLoggedIn(true);
     }).catch(() => {
@@ -38,21 +49,11 @@ export default class LoginPage extends PureComponent {
     });
   }
 
-  componentDidMount() {
-    this.unsubscribe = FIREBASE_AUTH_INSTANCE().onAuthStateChanged(user => {
-      this.handleUpdateUserLoggedIn(!!user);
-    });
-  }
-
-  componentWillUnmount() {
-    this.unsubscribe && this.unsubscribe();
-  }
-
   renderPageHeader() {
     return (
       <Header
         as="h2"
-        icon={true}
+        icon
       >
         <Icon
           name="twitter"
@@ -76,11 +77,11 @@ export default class LoginPage extends PureComponent {
 
   render() {
     if (this.state.loggedIn) {
-      return <Redirect to={INDEX_PAGE_ROUTE} />
+      return <Redirect to={INDEX_PAGE_ROUTE} />;
     }
     return (
       <Grid
-        centered={true}
+        centered
         columns={1}
       >
         <Grid.Row>
@@ -90,7 +91,6 @@ export default class LoginPage extends PureComponent {
           {this.renderLoginButton()}
         </Grid.Row>
       </Grid>
-    )
+    );
   }
-
 }

@@ -26,20 +26,20 @@ public class Login {
   public void testLogin() throws Exception {
     driver.get("https://web-engineering-spring-2019.firebaseapp.com/");
     driver.findElement(By.xpath("(.//*[normalize-space(text()) and normalize-space(.)='Please log in with Twitter to access SÜT'])[1]/following::button[1]")).click();
-    // ERROR: Caught exception [ERROR: Unsupported command [selectWindow | win_ser_1 | ]]
-    // ERROR: Caught exception [ERROR: Unsupported command [selectWindow | win_ser_local | ]]
-    // ERROR: Caught exception [ERROR: Unsupported command [selectWindow | win_ser_1 | ]]
+    driver.switchTo.window("win_ser_1");
+    driver.switchTo.window("win_ser_local");
+    driver.switchTo.window("win_ser_1");
     driver.findElement(By.id("username_or_email")).clear();
     String twitterUsername = config.getString("username");
     driver.findElement(By.id("username_or_email")).sendKeys(twitterUsername);
-    // ERROR: Caught exception [ERROR: Unsupported command [selectWindow | win_ser_local | ]]
-    // ERROR: Caught exception [ERROR: Unsupported command [selectWindow | win_ser_1 | ]]
+    driver.switchTo.window("win_ser_local");
+    driver.switchTo.window("win_ser_1");
     String twitterPassword = config.template.getString("password");
     driver.findElement(By.id("password")).clear();
     driver.findElement(By.id("password")).sendKeys(twitterPassword);
     driver.findElement(By.id("allow")).click();
     driver.close();
-    // ERROR: Caught exception [ERROR: Unsupported command [selectWindow | win_ser_local | ]]
+    driver.switchTo.window("win_ser_local");
   }
 
   @After

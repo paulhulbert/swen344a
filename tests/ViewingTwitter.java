@@ -25,9 +25,9 @@ public class ViewingTwitter {
   @Test
   public void testViewingTwitter() throws Exception {
     driver.get("https://web-engineering-spring-2019.firebaseapp.com/");
-    // ERROR: Caught exception [ERROR: Unsupported command [selectFrame | index=1 | ]]
+    driver.switchTo.frame("index=1");
     driver.findElement(By.linkText("View on Twitter")).click();
-    // ERROR: Caught exception [ERROR: Unsupported command [selectWindow | win_ser_1 | ]]
+    driver.switchTo.window("win_ser_1");
   }
 
   @After

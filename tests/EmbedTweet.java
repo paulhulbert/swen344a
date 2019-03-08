@@ -9,7 +9,7 @@ import org.openqa.selenium.*;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.ui.Select;
 
-public class MakingTweet {
+public class EmbedTweet {
   private WebDriver driver;
   private String baseUrl;
   private boolean acceptNextAlert = true;
@@ -23,17 +23,11 @@ public class MakingTweet {
   }
 
   @Test
-  public void testMakingTweet() throws Exception {
+  public void testEmbedTweet() throws Exception {
     driver.get("https://web-engineering-spring-2019.firebaseapp.com/");
-    driver.switchTo.frame("index=2");
-    driver.findElement(By.id("b")).click();
+    driver.switchTo.frame("index=1");
+    driver.findElement(By.linkText("Embed")).click();
     driver.switchTo.window("win_ser_1");
-    driver.findElement(By.id("status")).click();
-    driver.findElement(By.id("status")).clear();
-    driver.findElement(By.id("status")).sendKeys("SÜT Automated Example");
-    driver.findElement(By.xpath("(.//*[normalize-space(text()) and normalize-space(.)='SÜT'])[1]/following::input[1]")).click();
-    driver.close();
-    driver.switchTo.window("win_ser_local");
   }
 
   @After

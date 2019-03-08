@@ -25,19 +25,16 @@ public class CurrentWeather {
   @Test
   public void testCurrentWeather() throws Exception {
     driver.get("https://web-engineering-spring-2019.firebaseapp.com/");
-    // Warning: verifyTextPresent may require manual changes
     try {
       assertTrue(driver.findElement(By.cssSelector("BODY")).getText().matches("Weather"));
     } catch (Error e) {
       verificationErrors.append(e.toString());
     }
-    // Warning: verifyTextPresent may require manual changes
     try {
       assertTrue(driver.findElement(By.cssSelector("BODY")).getText().matches("today-weather-icon"));
     } catch (Error e) {
       verificationErrors.append(e.toString());
     }
-    // Warning: verifyTextPresent may require manual changes
     try {
       assertTrue(driver.findElement(By.cssSelector("BODY")).getText().matches("city-label"));
     } catch (Error e) {

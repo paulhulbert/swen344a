@@ -9,7 +9,7 @@ import org.openqa.selenium.*;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.ui.Select;
 
-public class Login {
+public class Login2 {
   private WebDriver driver;
   private String baseUrl;
   private boolean acceptNextAlert = true;
@@ -23,7 +23,7 @@ public class Login {
   }
 
   @Test
-  public void testLogin() throws Exception {
+  public void testLogin2() throws Exception {
     driver.get("https://web-engineering-spring-2019.firebaseapp.com/");
     driver.findElement(By.xpath("(.//*[normalize-space(text()) and normalize-space(.)='Please log in with Twitter to access SÜT'])[1]/following::button[1]")).click();
     driver.switchTo.window("win_ser_1");

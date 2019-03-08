@@ -8,12 +8,32 @@
 <body>
 <table cellpadding="1" cellspacing="1" border="1">
 <thead>
-<tr><td rowspan="1" colspan="3">TestSWEN344</td></tr>
+<tr><td rowspan="1" colspan="3">Login2</td></tr>
 </thead>
 <tbody>
-<tr><td>open</td><td>http://localhost:8080/<datalist><option>http://localhost:50899/</option><option>http://localhost:49206/</option><option>http://localhost:8080/</option></datalist></td><td></td>
+<tr><td>open</td><td>https://web-engineering-spring-2019.firebaseapp.com/<datalist><option>https://web-engineering-spring-2019.firebaseapp.com/</option></datalist></td><td></td>
 </tr>
-<tr><td>verifyTextPresent</td><td><datalist><option></option></datalist></td><td>Hello World! Paul is awesome.</td>
+<tr><td>click</td><td>xpath=(.//*[normalize-space(text()) and normalize-space(.)='Please log in with Twitter to access SÜT'])[1]/following::button[1]<datalist><option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='Please log in with Twitter to access SÜT'])[1]/following::button[1]</option><option>//div[@id='app']/div/div[2]/div[2]/button</option><option>//div[2]/button</option><option>css=button.ui.primary.button</option></datalist></td><td></td>
+</tr>
+<tr><td>selectWindow</td><td>win_ser_1<datalist><option>win_ser_1</option></datalist></td><td></td>
+</tr>
+<tr><td>selectWindow</td><td>win_ser_local<datalist><option>win_ser_local</option></datalist></td><td></td>
+</tr>
+<tr><td>selectWindow</td><td>win_ser_1<datalist><option>win_ser_1</option></datalist></td><td></td>
+</tr>
+<tr><td>type</td><td>id=username_or_email<datalist><option>id=username_or_email</option><option>name=session[username_or_email]</option><option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='Log in to Twitter'])[1]/following::input[1]</option><option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='About this app'])[1]/following::input[4]</option><option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='Remember me'])[1]/preceding::input[3]</option><option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='Forgot password?'])[1]/preceding::input[3]</option><option>//input[@id='username_or_email']</option><option>//form[@id='oauth_form']/fieldset/div/input</option><option>//fieldset/div/input</option><option>css=#username_or_email</option></datalist></td><td>pxh8242</td>
+</tr>
+<tr><td>selectWindow</td><td>win_ser_local<datalist><option>win_ser_local</option></datalist></td><td></td>
+</tr>
+<tr><td>selectWindow</td><td>win_ser_1<datalist><option>win_ser_1</option></datalist></td><td></td>
+</tr>
+<tr><td>type</td><td>id=password<datalist><option>id=password</option><option>name=session[password]</option><option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='Log in to Twitter'])[1]/following::input[2]</option><option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='About this app'])[1]/following::input[5]</option><option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='Remember me'])[1]/preceding::input[2]</option><option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='Forgot password?'])[1]/preceding::input[2]</option><option>//input[@id='password']</option><option>//form[@id='oauth_form']/fieldset/div[2]/input</option><option>//div[2]/input</option><option>css=#password</option></datalist></td><td>7p!J3!M,x&amp;}]hF{*</td>
+</tr>
+<tr><td>click</td><td>id=allow<datalist><option>id=allow</option><option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='Sign in to SÜT using your account?'])[1]/following::input[1]</option><option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='Forgot password?'])[1]/following::input[2]</option><option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='This application will be able to:'])[1]/preceding::input[2]</option><option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='Read Tweets from your timeline.'])[1]/preceding::input[2]</option><option>//input[@id='allow']</option><option>//form[@id='oauth_form']/fieldset[2]/input</option><option>//fieldset[2]/input</option><option>css=#allow</option></datalist></td><td></td>
+</tr>
+<tr><td>waitForPageToLoad</td><td><datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>selectWindow</td><td>win_ser_local<datalist><option>win_ser_local</option></datalist></td><td></td>
 </tr>
 </tbody></table>
 <table cellpadding="1" cellspacing="1" border="1">
@@ -21,6 +41,36 @@
 <tr><td rowspan="1" colspan="3">Home Setup</td></tr>
 </thead>
 <tbody>
+<tr><td>waitForPageToLoad</td><td><datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>open</td><td>https://web-engineering-spring-2019.firebaseapp.com/<datalist><option>https://web-engineering-spring-2019.firebaseapp.com/</option></datalist></td><td></td>
+</tr>
+<tr><td>verifyTextPresent</td><td><datalist><option></option></datalist></td><td>SÜT</td>
+</tr>
+<tr><td>verifyTextPresent</td><td><datalist><option></option></datalist></td><td>Calendar</td>
+</tr>
+<tr><td>verifyTextPresent</td><td><datalist><option></option></datalist></td><td>Stocks</td>
+</tr>
+<tr><td>verifyTextPresent</td><td><datalist><option></option></datalist></td><td>Twitter</td>
+</tr>
+<tr><td>verifyTextPresent</td><td><datalist><option></option></datalist></td><td>Weather</td>
+</tr>
+<tr><td>verifyTextPresent</td><td><datalist><option></option></datalist></td><td>Stocks</td>
+</tr>
+</tbody></table>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">Embed Tweet</td></tr>
+</thead>
+<tbody>
+<tr><td>open</td><td>https://web-engineering-spring-2019.firebaseapp.com/<datalist><option>https://web-engineering-spring-2019.firebaseapp.com/</option></datalist></td><td></td>
+</tr>
+<tr><td>selectFrame</td><td>index=2<datalist><option>index=1</option><option>index=2</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>link=Embed<datalist><option>link=Embed</option><option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='Load more Tweets'])[1]/following::a[1]</option><option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='Tumblr'])[9]/following::a[1]</option><option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='View on Twitter'])[1]/preceding::a[1]</option><option>//a[contains(text(),'Embed')]</option><option>//a[contains(@href, 'https://publish.twitter.com/?url=https%3A%2F%2Ftwitter.com%2Fpxh8242')]</option><option>//footer/a</option><option>css=a.u-floatLeft</option></datalist></td><td></td>
+</tr>
+<tr><td>selectWindow</td><td>win_ser_1<datalist><option>win_ser_1</option></datalist></td><td></td>
+</tr>
 </tbody></table>
 <table cellpadding="1" cellspacing="1" border="1">
 <thead>
@@ -30,6 +80,22 @@
 <tr><td>open</td><td>https://web-engineering-spring-2019.firebaseapp.com/<datalist><option>https://web-engineering-spring-2019.firebaseapp.com/</option></datalist></td><td></td>
 </tr>
 <tr><td>verifyTextPresent</td><td><datalist><option></option></datalist></td><td>Weather</td>
+</tr>
+<tr><td>verifyTextPresent</td><td><datalist><option>xpath=(//*[@id="app"]/div/div[2]/div/div[2]/div/div[2]/div[1]/div/h4[1])</option><option></option></datalist></td><td>today-weather-icon</td>
+</tr>
+<tr><td>verifyTextPresent</td><td><datalist><option>xpath=(//*[@id="app"]/div/div[2]/div/div[2]/div/div[2]/div[1]/div/h4[2])</option><option></option></datalist></td><td>city-label</td>
+</tr>
+</tbody></table>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">Current Stocks</td></tr>
+</thead>
+<tbody>
+<tr><td>open</td><td>https://web-engineering-spring-2019.firebaseapp.com/<datalist><option>https://web-engineering-spring-2019.firebaseapp.com/</option></datalist></td><td></td>
+</tr>
+<tr><td>verifyTextPresent</td><td><datalist><option></option></datalist></td><td>Stocks</td>
+</tr>
+<tr><td>verifyTextPresent</td><td><datalist><option></option></datalist></td><td>stock-card</td>
 </tr>
 </tbody></table>
 <table cellpadding="1" cellspacing="1" border="1">
@@ -41,6 +107,16 @@
 </tr>
 <tr><td>click</td><td>link=Calendar<datalist><option>link=Calendar</option><option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='SÜT'])[2]/following::a[1]</option><option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='Stocks'])[1]/preceding::a[1]</option><option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='Log Out'])[1]/preceding::a[2]</option><option>//a[contains(text(),'Calendar')]</option><option>//div[@id='app']/div/div/div[2]/a</option><option>//a[contains(@href, '/calendar')]</option><option>//div[2]/a</option></datalist></td><td></td>
 </tr>
+<tr><td>click</td><td>xpath=(.//*[normalize-space(text()) and normalize-space(.)='Log Out'])[1]/following::span[1]<datalist><option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='Log Out'])[1]/following::span[1]</option><option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='Stocks'])[1]/following::span[1]</option><option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='today'])[1]/preceding::span[2]</option><option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='month'])[1]/preceding::span[2]</option><option>//div[@id='main-calendar']/div/div/button/span</option><option>//span</option><option>css=span.fc-icon.fc-icon-left-single-arrow</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>xpath=(.//*[normalize-space(text()) and normalize-space(.)='Log Out'])[1]/following::span[2]<datalist><option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='Log Out'])[1]/following::span[2]</option><option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='Stocks'])[1]/following::span[2]</option><option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='today'])[1]/preceding::span[1]</option><option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='month'])[1]/preceding::span[1]</option><option>//div[@id='main-calendar']/div/div/button[2]/span</option><option>//button[2]/span</option><option>css=span.fc-icon.fc-icon-right-single-arrow</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>xpath=(.//*[normalize-space(text()) and normalize-space(.)='month'])[1]/following::button[1]<datalist><option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='month'])[1]/following::button[1]</option><option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='today'])[1]/following::button[2]</option><option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='day'])[1]/preceding::button[1]</option><option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='March 2019'])[1]/preceding::button[2]</option><option>xpath=(//button[@type='button'])[5]</option><option>//div[@id='main-calendar']/div/div[2]/div/button[2]</option><option>//div[2]/div/button[2]</option><option>css=button.fc-basicWeek-button.fc-button.fc-state-default.fc-state-hover</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>xpath=(.//*[normalize-space(text()) and normalize-space(.)='week'])[1]/following::button[1]<datalist><option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='week'])[1]/following::button[1]</option><option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='month'])[1]/following::button[2]</option><option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='Feb 24 – Mar 2, 2019'])[1]/preceding::button[1]</option><option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='Sun 2/24'])[1]/preceding::button[1]</option><option>xpath=(//button[@type='button'])[6]</option><option>//div[@id='main-calendar']/div/div[2]/div/button[3]</option><option>//div[2]/div/button[3]</option><option>css=button.fc-basicDay-button.fc-button.fc-state-default.fc-corner-right.fc-state-hover</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>xpath=(.//*[normalize-space(text()) and normalize-space(.)='Log Out'])[1]/following::button[3]<datalist><option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='Log Out'])[1]/following::button[3]</option><option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='Stocks'])[1]/following::button[4]</option><option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='month'])[1]/preceding::button[1]</option><option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='week'])[1]/preceding::button[2]</option><option>xpath=(//button[@type='button'])[3]</option><option>//div[@id='main-calendar']/div/div/button[3]</option><option>//button[3]</option><option>css=button.fc-today-button.fc-button.fc-state-default.fc-corner-left.fc-corner-right.fc-state-hover</option></datalist></td><td></td>
+</tr>
 </tbody></table>
 <table cellpadding="1" cellspacing="1" border="1">
 <thead>
@@ -51,25 +127,39 @@
 </tr>
 <tr><td>click</td><td>link=Stocks<datalist><option>link=Stocks</option><option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='Calendar'])[1]/following::a[1]</option><option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='SÜT'])[2]/following::a[2]</option><option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='Log Out'])[1]/preceding::a[1]</option><option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='Calendar Page'])[1]/preceding::a[1]</option><option>//a[contains(text(),'Stocks')]</option><option>//div[@id='app']/div/div/div[3]/a</option><option>//a[contains(@href, '/stocks')]</option><option>//div[3]/a</option></datalist></td><td></td>
 </tr>
-</tbody></table>
-<table cellpadding="1" cellspacing="1" border="1">
-<thead>
-<tr><td rowspan="1" colspan="3">Making Tweet</td></tr>
-</thead>
-<tbody>
+<tr><td>click</td><td>link=MSFT<datalist><option>link=MSFT</option><option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='Log Out'])[1]/following::a[1]</option><option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='Stocks'])[1]/following::a[1]</option><option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='AAPL'])[1]/preceding::a[1]</option><option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='SNAP'])[1]/preceding::a[2]</option><option>//a[contains(text(),'MSFT')]</option><option>//div[@id='app']/div/div[2]/div/div/div/a</option><option>//div[2]/div/div/div/a</option><option>css=a.active.item</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>link=AAPL<datalist><option>link=AAPL</option><option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='MSFT'])[1]/following::a[1]</option><option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='Log Out'])[1]/following::a[2]</option><option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='SNAP'])[1]/preceding::a[1]</option><option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='TSLA'])[1]/preceding::a[2]</option><option>//a[contains(text(),'AAPL')]</option><option>//div[@id='app']/div/div[2]/div/div/div/a[2]</option><option>//a[2]</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>link=SNAP<datalist><option>link=SNAP</option><option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='AAPL'])[1]/following::a[1]</option><option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='MSFT'])[1]/following::a[2]</option><option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='TSLA'])[1]/preceding::a[1]</option><option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='GOOG'])[1]/preceding::a[2]</option><option>//a[contains(text(),'SNAP')]</option><option>//div[@id='app']/div/div[2]/div/div/div/a[3]</option><option>//a[3]</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>link=TSLA<datalist><option>link=TSLA</option><option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='SNAP'])[1]/following::a[1]</option><option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='AAPL'])[1]/following::a[2]</option><option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='GOOG'])[1]/preceding::a[1]</option><option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='YTD'])[1]/preceding::a[5]</option><option>//a[contains(text(),'TSLA')]</option><option>//div[@id='app']/div/div[2]/div/div/div/a[4]</option><option>//a[4]</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>link=GOOG<datalist><option>link=GOOG</option><option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='TSLA'])[1]/following::a[1]</option><option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='SNAP'])[1]/following::a[2]</option><option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='YTD'])[1]/preceding::a[4]</option><option>//a[contains(text(),'GOOG')]</option><option>//div[@id='app']/div/div[2]/div/div/div/a[5]</option><option>//a[5]</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>link=5 Day<datalist><option>link=5 Day</option><option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='GOOG'])[1]/following::a[1]</option><option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='TSLA'])[1]/following::a[2]</option><option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='YTD'])[1]/preceding::a[3]</option><option>//a[contains(text(),'5 Day')]</option><option>//div[@id='app']/div/div[2]/div/div[2]/div/div/div[2]/div/a</option><option>//div[2]/div/a</option><option>css=div.right.menu &gt; a.item</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>link=1 Month<datalist><option>link=1 Month</option><option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='GOOG'])[1]/following::a[2]</option><option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='TSLA'])[1]/following::a[3]</option><option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='YTD'])[1]/preceding::a[2]</option><option>//a[contains(text(),'1 Month')]</option><option>//div[@id='app']/div/div[2]/div/div[2]/div/div/div[2]/div/a[2]</option><option>//div[2]/div/a[2]</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>link=6 Months<datalist><option>link=6 Months</option><option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='GOOG'])[1]/following::a[3]</option><option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='TSLA'])[1]/following::a[4]</option><option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='YTD'])[1]/preceding::a[1]</option><option>//a[contains(text(),'6 Months')]</option><option>//div[@id='app']/div/div[2]/div/div[2]/div/div/div[2]/div/a[3]</option><option>//div[2]/div/a[3]</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>link=YTD<datalist><option>link=YTD</option><option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='GOOG'])[1]/following::a[4]</option><option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='TSLA'])[1]/following::a[5]</option><option>//a[contains(text(),'YTD')]</option><option>//div[@id='app']/div/div[2]/div/div[2]/div/div/div[2]/div/a[4]</option><option>//div[2]/div/a[4]</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>link=1 Year<datalist><option>link=1 Year</option><option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='YTD'])[1]/following::a[1]</option><option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='GOOG'])[1]/following::a[5]</option><option>//a[contains(text(),'1 Year')]</option><option>//div[@id='app']/div/div[2]/div/div[2]/div/div/div[2]/div/a[5]</option><option>//div[2]/div/a[5]</option></datalist></td><td></td>
+</tr>
 </tbody></table>
 <table cellpadding="1" cellspacing="1" border="1">
 <thead>
 <tr><td rowspan="1" colspan="3">Viewing Twitter</td></tr>
 </thead>
 <tbody>
-</tbody></table>
-<table cellpadding="1" cellspacing="1" border="1">
-<thead>
-<tr><td rowspan="1" colspan="3">Login</td></tr>
-</thead>
-<tbody>
 <tr><td>open</td><td>https://web-engineering-spring-2019.firebaseapp.com/<datalist><option>https://web-engineering-spring-2019.firebaseapp.com/</option></datalist></td><td></td>
+</tr>
+<tr><td>selectFrame</td><td>index=1<datalist><option>xpath=(//*[@id="app"]/div/div[2]/div/div[1]/div)</option><option>index=2</option><option>index=1</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>link=View on Twitter<datalist><option>link=View on Twitter</option><option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='Embed'])[1]/following::a[1]</option><option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='Load more Tweets'])[1]/following::a[2]</option><option>//a[contains(text(),'View on Twitter')]</option><option>//a[contains(@href, 'https://twitter.com/pxh8242?ref_src=twsrc%5Etfw%7Ctwcamp%5Eembeddedtimeline&amp;ref_url=https%3A%2F%2Fweb-engineering-spring-2019.firebaseapp.com%2F')]</option><option>//a[2]</option><option>css=a.u-floatRight</option></datalist></td><td></td>
+</tr>
+<tr><td>selectWindow</td><td>win_ser_1<datalist><option>win_ser_1</option></datalist></td><td></td>
 </tr>
 </tbody></table>
 <table cellpadding="1" cellspacing="1" border="1">
@@ -79,7 +169,31 @@
 <tbody>
 <tr><td>open</td><td>https://web-engineering-spring-2019.firebaseapp.com/<datalist><option>https://web-engineering-spring-2019.firebaseapp.com/</option></datalist></td><td></td>
 </tr>
-<tr><td>click</td><td>xpath=(.//*[normalize-space(text()) and normalize-space(.)='Stocks'])[1]/following::button[1]<datalist><option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='Stocks'])[1]/following::button[1]</option><option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='Calendar'])[1]/following::button[1]</option><option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='Twitter'])[1]/preceding::button[1]</option><option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='Weather'])[1]/preceding::button[1]</option><option>//div[@id='app']/div/div/div[4]/div/button</option><option>//button</option><option>css=button.ui.inverted.button</option></datalist></td><td></td>
+<tr><td>click</td><td>xpath=(.//*[normalize-space(text()) and normalize-space(.)='Stocks'])[1]/following::button[1]<datalist><option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='Stocks'])[1]/following::button[1]</option><option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='Calendar'])[1]/following::button[1]</option><option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='today'])[1]/preceding::button[3]</option><option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='month'])[1]/preceding::button[4]</option><option>//div[@id='app']/div/div/div[4]/div/button</option><option>//button</option><option>css=button.ui.inverted.button</option></datalist></td><td></td>
+</tr>
+</tbody></table>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">Making Tweet</td></tr>
+</thead>
+<tbody>
+<tr><td>open</td><td>https://web-engineering-spring-2019.firebaseapp.com/<datalist><option>https://web-engineering-spring-2019.firebaseapp.com/</option></datalist></td><td></td>
+</tr>
+<tr><td>waitForPageToLoad</td><td><datalist><option></option></datalist></td><td></td>
+</tr>
+<tr><td>selectFrame</td><td>index=2<datalist><option>index=2</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>xpath=(.//*[normalize-space(text()) and normalize-space(.)='Tweet'])[1]/preceding::i[1]<datalist><option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='Tweet'])[1]/preceding::i[1]</option><option>//a[@id='b']/i</option><option>//i</option><option>css=i</option></datalist></td><td></td>
+</tr>
+<tr><td>selectWindow</td><td>win_ser_1<datalist><option>win_ser_1</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>id=status<datalist><option>id=status</option><option>name=status</option><option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='Tweet Text'])[1]/following::textarea[1]</option><option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='What’s happening?'])[1]/following::textarea[1]</option><option>//textarea[@id='status']</option><option>//form[@id='update-form']/div[2]/span/textarea</option><option>//textarea</option><option>css=#status</option></datalist></td><td></td>
+</tr>
+<tr><td>type</td><td>id=status<datalist><option>id=status</option><option>name=status</option><option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='Tweet Text'])[1]/following::textarea[1]</option><option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='What’s happening?'])[1]/following::textarea[1]</option><option>//textarea[@id='status']</option><option>//form[@id='update-form']/div[2]/span/textarea</option><option>//textarea</option><option>css=#status</option></datalist></td><td>SÜT Automated Example</td>
+</tr>
+<tr><td>click</td><td>xpath=(.//*[normalize-space(text()) and normalize-space(.)='SÜT'])[1]/following::input[1]<datalist><option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='SÜT'])[1]/following::input[1]</option><option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='Tweet Text'])[1]/following::input[1]</option><option>//input[@value='Tweet']</option><option>//form[@id='update-form']/div[3]/fieldset/input</option><option>//fieldset/input</option><option>css=input.button.selected.submit</option></datalist></td><td></td>
+</tr>
+<tr><td>selectWindow</td><td>win_ser_local<datalist><option>win_ser_local</option></datalist></td><td></td>
 </tr>
 </tbody></table>
 </body>

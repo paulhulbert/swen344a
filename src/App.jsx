@@ -7,7 +7,7 @@ import {
   BrowserRouter as Router,
   Route,
 } from 'react-router-dom';
-import MenuBar from './components/menu/MenuBar';
+import MenuBar from './components/menu/MenuBar'
 import { 
   INDEX_PAGE_ROUTE,
   CALENDAR_PAGE_ROUTE,

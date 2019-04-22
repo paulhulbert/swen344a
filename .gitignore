@@ -71,3 +71,4 @@ public
 
 .DS_Store
 config.js
+tests/config.template.java

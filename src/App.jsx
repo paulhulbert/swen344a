@@ -7,16 +7,18 @@ import {
   BrowserRouter as Router,
   Route,
 } from 'react-router-dom';
-import MenuBar from './components/menu/MenuBar';
+import MenuBar from './components/menu/MenuBar'
 import { 
   INDEX_PAGE_ROUTE,
   CALENDAR_PAGE_ROUTE,
   STOCKS_PAGE_ROUTE,
   LOGIN_PAGE_ROUTE,
+  HISTORY_PAGE_ROUTE,
 } from './constants/routes';
 import './style/app.css';
 import BottomMenu from './components/menu/BottomMenu';
 import LoginPage from './components/login/LoginPage';
+import HistoryPage from "./components/history/HistoryPage";
 
 export default class App extends PureComponent {
   render() {
@@ -35,8 +37,12 @@ export default class App extends PureComponent {
               component={withAuth(CalendarPage)}
             />
             <Route
-              path={STOCKS_PAGE_ROUTE}
-              component={withAuth(StocksPage)}
+                path={STOCKS_PAGE_ROUTE}
+                component={withAuth(StocksPage)}
+            />
+            <Route
+                path={HISTORY_PAGE_ROUTE}
+                component={withAuth(HistoryPage)}
             />
             <Route
               path={LOGIN_PAGE_ROUTE}

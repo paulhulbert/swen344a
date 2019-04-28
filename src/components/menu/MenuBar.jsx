@@ -12,9 +12,11 @@ import {
   INDEX_PAGE_ROUTE,
   CALENDAR_PAGE_ROUTE,
   STOCKS_PAGE_ROUTE,
+  HISTORY_PAGE_ROUTE,
 } from '../../constants/routes';
 import PropTypes from 'prop-types';
 import LogOutButton from '../login/LogOutButton';
+import SelfAdaptive from './SelfAdaptive'
 
 class MenuBar extends PureComponent {
   renderMenuItem(name, route) {
@@ -40,6 +42,14 @@ class MenuBar extends PureComponent {
     )
   }
 
+  renderSelfAdaptiveComponent() {
+    return (
+        <Menu.Item>
+          <SelfAdaptive/>
+        </Menu.Item>
+    )
+  }
+
   render() {
     return (
       <Menu
@@ -50,6 +60,8 @@ class MenuBar extends PureComponent {
         {this.renderMenuItem('SÜT', INDEX_PAGE_ROUTE)}
         {this.renderMenuItem('Calendar', CALENDAR_PAGE_ROUTE)}
         {this.renderMenuItem('Stocks', STOCKS_PAGE_ROUTE)}
+        {this.renderMenuItem('History', HISTORY_PAGE_ROUTE)}
+        {this.renderSelfAdaptiveComponent()}
         <Menu.Menu
           position='right'
         >

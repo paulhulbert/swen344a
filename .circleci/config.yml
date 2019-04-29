@@ -27,11 +27,6 @@ jobs:
             - v1-dependencies-
 
       - run: yarn install
-
-      - save_cache:
-          paths:
-            - node_modules
-          key: v1-dependencies-{{ checksum "package.json" }}
       - run:
           name: Install Firebase Tools
           command: npm install --prefix=./firebase-deploy firebase-tools

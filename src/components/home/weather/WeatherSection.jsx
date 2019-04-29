@@ -8,6 +8,8 @@ import moment from 'moment';
 import { DATE_FORMAT } from '../../../constants/formats';
 import '../../../style/home/weather.css';
 import LoadingState from '../../common/LoadingState';
+import firebase from 'firebase';
+import 'firebase/database';
 
 export default class WeatherSection extends PureComponent {
 
@@ -16,13 +18,39 @@ export default class WeatherSection extends PureComponent {
     this.state = {
       weather: List(),
       fetchingWeather: true,
+      zipCode: 14623,
     }
     this.handleUpdateWeather = this.handleUpdateWeather.bind(this);
     this.renderWeatherItem = this.renderWeatherItem.bind(this);
+    this.handleUpdateZipCodeInput = this.handleUpdateZipCodeInput.bind(this);
+    this.writeZipCode = this.writeZipCode.bind(this);
   }
 
   componentDidMount() {
-    getFullForecastForZip(14623, this.handleUpdateWeather);
+    firebase.database().ref("userZipCode/" + firebase.auth().currentUser.uid).once('value').then((response) => {
+      this.setState({
+        zipCode: response.val() ? response.val().zipCode : 14623,
+      })
+    });
+
+    getFullForecastForZip(this.state.zipCode, this.handleUpdateWeather);
+  }
+
+  handleUpdateZipCodeInput(event) {
+    const zipCode = event.target.value;
+    this.setState({
+      zipCode,
+    })
+  }
+
+  writeZipCode() {
+    firebase.database().ref("userZipCode/" + firebase.auth().currentUser.uid).set({
+      zipCode: this.state.zipCode,
+    });
+    this.setState({
+      fetchingWeather: true,
+    })
+    getFullForecastForZip(this.state.zipCode, this.handleUpdateWeather);
   }
 
   handleUpdateWeather(weather) {
@@ -49,6 +77,12 @@ export default class WeatherSection extends PureComponent {
     if (this.state.fetchingWeather) {
       return <LoadingState />;
     }
-    return this.state.weather.map(this.renderWeatherItem);
+    return (<div>
+      <div>
+        <input value={this.state.zipCode} onChange={this.handleUpdateZipCodeInput}/>
+        <button id="form-button-control-public" onClick={this.writeZipCode}>Submit</button>
+      </div>
+      {this.state.weather.map(this.renderWeatherItem)}
+    </div>)
   }
 }

@@ -29,8 +29,16 @@ export function fetchTopStocks(callback) {
     fetchStockData(DEFAULTS_STOCKS, callback);
 }
 
-export function fetchStockData(stocks, callback){
+function fetchStockData(stocks, callback){
     fetch(`${BASE_URL}/market/batch/?symbols=${getStockSymbols(stocks)}&types=quote`)
+        .then((resp) => resp.json())
+        .then(fromJS)
+        .then(processRawStocks)
+        .then(callback);
+}
+
+export function fetchIndividualStockData(stock, callback){
+    fetch(`${BASE_URL}/market/batch/?symbols=${stock}&types=quote`)
         .then((resp) => resp.json())
         .then(fromJS)
         .then(processRawStocks)

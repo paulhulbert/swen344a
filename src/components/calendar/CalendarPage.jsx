@@ -1,5 +1,5 @@
 import React, { PureComponent } from 'react';
-import { Button, Grid, Container, Header, Icon, Modal, Input } from 'semantic-ui-react';
+import { Button, Grid, Container, Header, Icon, Modal, Input, Label, Form } from 'semantic-ui-react';
 import '../../../node_modules/fullcalendar-reactwrapper/dist/css/fullcalendar.min.css';
 import FullCalendar from 'fullcalendar-reactwrapper';
 import LoadingState from '../common/LoadingState';
@@ -71,6 +71,28 @@ export default class CalendarPage extends PureComponent {
     }
   }
 
+  handleSubmit(e){
+    e.preventDefault();
+    const selectedFile = e.target.input.files[0];
+    console.log('Selected File', selectedFile);
+    fetch(selectedFile.name).then(response => {
+      return response.json();
+    }).then(data => {
+      var event = {
+        end: data.start,
+        start: data.start,
+        title: data.title,
+      }
+      var newEventKey = firebase.database().ref().child('events').push().key;
+      var updates = {};
+      updates['/events/' + newEventKey] = event;
+      return firebase.database().ref().update(updates);
+
+    }).catch(err => {
+      console.log("error reading data" + err);
+    });
+  }
+
   render() {
     const { events } = this.state;
 
@@ -99,6 +121,16 @@ export default class CalendarPage extends PureComponent {
               eventLimit={true}
               events={events}
             />
+            <Form onSubmit={this.handleSubmit}>
+              <Input
+                type="file"
+                name="input"
+                required
+                accept=".json"
+              />
+              <Button type="submit">Upload event</Button>
+            </Form>
+            Must be a .json file in the public folder of the repository
           </Grid.Column>
         </Grid>
       </Container>

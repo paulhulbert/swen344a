@@ -3,7 +3,7 @@ import { Map } from 'immutable';
 import LoadingState from '../common/LoadingState';
 import { getOneYearStockChartData, fetchTopStocks } from '../../utils/stocks/stocksUtils';
 import StockChartSection from './StockChartSection';
-import { Container, Grid } from 'semantic-ui-react';
+import { Container, Grid, Button } from 'semantic-ui-react';
 import StockTickerPicker from './StockTickerPicker';
 import { STOCK_FIELD_NAMES } from '../../constants/stocksConstants';
 

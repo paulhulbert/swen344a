@@ -14,11 +14,13 @@ import {
   STOCKS_PAGE_ROUTE,
   LOGIN_PAGE_ROUTE,
   HISTORY_PAGE_ROUTE,
+  TRADE_PAGE_ROUTE
 } from './constants/routes';
 import './style/app.css';
 import BottomMenu from './components/menu/BottomMenu';
 import LoginPage from './components/login/LoginPage';
 import HistoryPage from "./components/history/HistoryPage";
+import StockTradingPage from './components/stocks/StockTradingPage';
 
 export default class App extends PureComponent {
   render() {
@@ -47,6 +49,10 @@ export default class App extends PureComponent {
             <Route
               path={LOGIN_PAGE_ROUTE}
               component={LoginPage}
+            />
+            <Route
+              path={TRADE_PAGE_ROUTE}
+              component={StockTradingPage}
             />
           </div>
         </Router>

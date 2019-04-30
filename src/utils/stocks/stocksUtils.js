@@ -29,7 +29,7 @@ export function fetchTopStocks(callback) {
     fetchStockData(DEFAULTS_STOCKS, callback);
 }
 
-function fetchStockData(stocks, callback){
+export function fetchStockData(stocks, callback){
     fetch(`${BASE_URL}/market/batch/?symbols=${getStockSymbols(stocks)}&types=quote`)
         .then((resp) => resp.json())
         .then(fromJS)

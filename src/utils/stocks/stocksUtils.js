@@ -37,6 +37,14 @@ function fetchStockData(stocks, callback){
         .then(callback);
 }
 
+export function fetchIndividualStockData(stock, callback){
+    fetch(`${BASE_URL}/market/batch/?symbols=${stock}&types=quote`)
+        .then((resp) => resp.json())
+        .then(fromJS)
+        .then(processRawStocks)
+        .then(callback);
+}
+
 // chart utils
 
 function getStockChartPath(ticker, date) {

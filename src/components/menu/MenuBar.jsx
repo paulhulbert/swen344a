@@ -13,6 +13,7 @@ import {
   CALENDAR_PAGE_ROUTE,
   STOCKS_PAGE_ROUTE,
   HISTORY_PAGE_ROUTE,
+  TRADE_PAGE_ROUTE
 } from '../../constants/routes';
 import PropTypes from 'prop-types';
 import LogOutButton from '../login/LogOutButton';
@@ -61,6 +62,7 @@ class MenuBar extends PureComponent {
         {this.renderMenuItem('Calendar', CALENDAR_PAGE_ROUTE)}
         {this.renderMenuItem('Stocks', STOCKS_PAGE_ROUTE)}
         {this.renderMenuItem('History', HISTORY_PAGE_ROUTE)}
+        {this.renderMenuItem('Trade', TRADE_PAGE_ROUTE)}
         {this.renderSelfAdaptiveComponent()}
         <Menu.Menu
           position='right'

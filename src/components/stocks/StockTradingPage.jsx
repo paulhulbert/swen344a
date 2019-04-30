@@ -24,17 +24,24 @@ export default class StockTradingPage extends PureComponent {
     this.purchaseStock = this.purchaseStock.bind(this);
     this.sellStock = this.sellStock.bind(this);
     this.renderHistory = this.renderHistory.bind(this);
+    this.handleGetUserHistory = this.handleGetUserHistory.bind(this);
+  }
+
+  handleGetUserHistory() {
+    if (firebase.auth().currentUser) {
+      firebase.database().ref("userStocks/" + firebase.auth().currentUser.uid).once('value').then((response) => {
+        this.setState({
+          history: response.val() || Map(),
+        })
+      });
+    } else {
+      setTimeout(this.handleGetUserHistory, 500)
+    }
   }
 
   componentDidMount() {
-    console.log('hi');
-    console.log(firebase.auth().currentUser);
-    firebase.database().ref("userStocks/" + firebase.auth().currentUser.uid).once('value').then((response) => {
-        this.setState({
-          history: response.val() ? response.val().zipCode : null,
-        })
-      });
-  }  
+    this.handleGetUserHistory();
+  }
 
   handleUpdateStockSearch(event) {
     const searchTicker = event.target.value;
@@ -86,9 +93,13 @@ export default class StockTradingPage extends PureComponent {
   }
 
   render() {
+    const { history } = this.state;
+    if (!history) {
+      return <LoadingState />
+    }
     return (
       <Container>
-        <Grid columns={2} stretched={true} padded={10}>
+        <Grid columns={2} stretched={true}>
             <div>
                 <Input labelPosition='right' type='text' placeholder='Ticker'>
                     <Label basic>Ticker</Label>
@@ -103,7 +114,7 @@ export default class StockTradingPage extends PureComponent {
             </div>
         </Grid>
         <Label>History:</Label>
-        {this.state.history.toList().map(this.renderIndividualStock)}
+        {history.toList().map(this.renderIndividualStock)}
       </Container>
     );
   }

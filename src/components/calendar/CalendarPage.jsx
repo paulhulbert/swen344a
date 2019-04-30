@@ -3,51 +3,76 @@ import { Button, Grid, Container, Header, Icon, Modal, Input } from 'semantic-ui
 import '../../../node_modules/fullcalendar-reactwrapper/dist/css/fullcalendar.min.css';
 import FullCalendar from 'fullcalendar-reactwrapper';
 import LoadingState from '../common/LoadingState';
+import firebase from 'firebase/app';
+import 'firebase/database';
 
 export default class CalendarPage extends PureComponent {
   constructor(props) {
     super(props);
-    this.submit = this.submit.bind(this);
-  }
-  componentWillMount() {
-    this.fetchEvents();
-  }
-
-  fetchEvents() {
-    this.setState({
-      eventsFetching: true,
-    })
-    // use mock data
-    this.eventsFetched([
-      {
-        title: 'test event',
-        start: '2019-04-29'
-      },
-    ]);
-  }
-
-  eventsFetched(events) {
-    this.setState({
+    this.state = {
       eventsFetching: false,
-      events: events
-    })
+      events: [],
+    };
+    this.componentDidMount = this.componentDidMount.bind(this);
   }
 
-  state = { open: false }
-  open = () => this.setState({ open: true })
-  close = () => this.setState({ open: false })
+  componentDidMount() {
+    let current = this;
+    this.setState({ eventsFetching: true });
 
-  submit() {
-    console.log('Submitted');
-    this.setState({ open: false })
+    firebase.database().ref('events').on('value', function(snapshot) {
+      try {
+        const events = snapshot.val();
+        if (events) {
+          var list = [];
+          for (var key in events) {
+            if (events[key].start) {
+              var line = {
+                title: events[key].title,
+                start: events[key].start,
+                end: events[key].start,
+              };
+              list.push(line);
+            }
+          }
+          current.setState({
+            eventsFetching: false,
+            events: list,
+          });
+        } else {
+          current.setState({
+            eventsFetching: false,
+            events: [],
+          });
+        }
+      }
+      catch (err) {
+        console.log(err);
+      }
+    });
+  }
+
+  addEvent() {
+    var dateStr = prompt('Enter a date in YYYY-MM-DD format');
+    var date = new Date(dateStr + 'T00:00:00'); // will be in local time
+    var desc = prompt('Enter a title description for your event');
+    if ((!isNaN(date.valueOf())) && (desc != '')) { // valid?
+      var event = {
+        end: date,
+        start: date,
+        title: desc,
+      }
+      var newEventKey = firebase.database().ref().child('events').push().key;
+      var updates = {};
+      updates['/events/' + newEventKey] = event;
+      return firebase.database().ref().update(updates);
+    } else {
+      alert('Invalid input, please try again.');
+    }
   }
 
   render() {
-    if (this.state.eventsFetching) {
-      return <LoadingState />;
-    }
-
-    const { open } = this.state
+    const { events } = this.state;
 
     return (
       <Container>
@@ -59,36 +84,21 @@ export default class CalendarPage extends PureComponent {
             <FullCalendar
               id="main-calendar"
               header={{
-                left: 'prev, next today myCustomButton',
-                center: 'title',
+                left: 'prev, next today',
+                center: 'addEventButton',
                 right: 'month,basicWeek,basicDay'
+              }}
+              customButtons={{
+                addEventButton: {
+                  text: 'add event...',
+                  click: this.addEvent
+                },
               }}
               navLinks={true}
               editable={true}
               eventLimit={true}
-              events={this.state.events}
+              events={events}
             />
-
-            <Modal
-              open={open}
-              onOpen={this.open}
-              onClose={this.close}
-              size='small'
-              trigger={<Button primary={true}><Icon name='plus' circular />Create Event</Button>}
-            >
-              <Modal.Header>Event Creation</Modal.Header>
-              <Modal.Content>
-                <Modal.Description>
-                  <Input label='Title' placeholder='Your event title here...' />
-                  <Input label='Date' placeholder='YYYY-MM-DD' value={this.state.date}/>
-                </Modal.Description>
-              </Modal.Content>
-              <Modal.Actions>
-                <Button icon='x' content='Cancel' onClick={this.close} />
-                <Button color='green' icon='plus' content='Create' onClick={this.submit} />
-            </Modal.Actions>
-            </Modal>
-            <Button icon='upload' content='Upload Event' />
           </Grid.Column>
         </Grid>
       </Container>
